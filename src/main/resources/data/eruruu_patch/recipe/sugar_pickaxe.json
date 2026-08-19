@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "food",
+  "pattern": [
+    "SSS",
+    "SPS",
+    "SSS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "P": {
+      "item": "minecraft:wooden_pickaxe"
+    }
+  },
+  "result": {
+    "id": "eruruu_patch:sugar_pickaxe",
+    "count": 1
+  }
+}

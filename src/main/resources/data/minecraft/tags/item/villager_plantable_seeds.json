@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "argentum:yerba_semilla",
+    "argentum:te_semilla",
+    "argentum:batata",
+    "argentum:membrillo_semilla"
+  ]
+}

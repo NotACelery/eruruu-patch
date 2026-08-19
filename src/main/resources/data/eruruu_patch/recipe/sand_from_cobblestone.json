@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:cobblestone"
+  },
+  "result": {
+    "id": "minecraft:sand",
+    "count": 1
+  },
+  "group": "eruruu_patch:sand_from_cobblestone"
+}

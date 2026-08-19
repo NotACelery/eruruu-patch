@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.maicra.eruruupatch.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "StonecutterSiftingTablesMixin",
+    "CompatFarmerBlockEntityMixin",
+    "CompatFarmerBlockMixin"
+  ],
+  "client": [
+    "MinecraftAutoMiningMixin",
+    "ScreenPauseMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

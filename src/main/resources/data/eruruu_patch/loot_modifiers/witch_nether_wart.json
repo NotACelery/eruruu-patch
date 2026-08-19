@@ -1,0 +1,20 @@
+{
+  "type": "neoforge:add_table",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:entities/witch"
+    },
+    {
+      "condition": "minecraft:random_chance_with_enchanted_bonus",
+      "unenchanted_chance": 0.10,
+      "enchanted_chance": {
+        "type": "linear",
+        "base": 0.125,
+        "per_level_above_first": 0.025
+      },
+      "enchantment": "minecraft:looting"
+    }
+  ],
+  "table": "eruruu_patch:inject/witch_nether_wart"
+}

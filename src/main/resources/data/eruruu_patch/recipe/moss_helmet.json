@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "MMM",
+    "M M"
+  ],
+  "key": {
+    "M": { "item": "minecraft:moss_block" }
+  },
+  "result": {
+    "id": "eruruu_patch:moss_helmet",
+    "count": 1
+  }
+}

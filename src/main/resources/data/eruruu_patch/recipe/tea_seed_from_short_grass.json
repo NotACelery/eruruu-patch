@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": ["GGG"],
+  "key": {
+    "G": { "item": "minecraft:short_grass" }
+  },
+  "result": {
+    "id": "argentum:te_semilla",
+    "count": 1
+  }
+}

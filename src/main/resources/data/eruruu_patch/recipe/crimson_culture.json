@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": ["RRR", "RRR", "RRR"],
+  "key": {
+    "R": { "item": "minecraft:crimson_roots" }
+  },
+  "result": {
+    "id": "eruruu_patch:crimson_culture",
+    "count": 1
+  }
+}

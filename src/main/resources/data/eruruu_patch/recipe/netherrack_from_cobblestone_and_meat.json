@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CM",
+    "MC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
+    "M": {
+      "tag": "eruruu_patch:netherrack_meats"
+    }
+  },
+  "result": {
+    "id": "minecraft:netherrack",
+    "count": 4
+  }
+}

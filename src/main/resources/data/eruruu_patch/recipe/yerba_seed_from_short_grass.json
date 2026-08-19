@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": ["GG", "GG"],
+  "key": {
+    "G": { "item": "minecraft:short_grass" }
+  },
+  "result": {
+    "id": "argentum:yerba_semilla",
+    "count": 1
+  }
+}
