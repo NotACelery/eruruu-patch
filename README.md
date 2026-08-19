@@ -5,12 +5,13 @@ Small NeoForge 1.21.1 compatibility/QoL patch for **Eruruu's Cult OneBlock**.
 The design goal is to remove OneBlock-specific resource locks without turning the pack into a vending machine: most new acquisition methods require renewable inputs, infrastructure, time, or low-probability processing.
 
 ## Sandbox / migration policy
-Eruruu Patch is also the **integration sandbox for the OneBlock pack**. Features that ultimately belong to another one of our mods are first implemented here so they can be tested together in the real modpack before being moved into their permanent project. The README is the functional source of truth for that migration: temporary integrations must document their inputs, outputs, restrictions, persistence/automation rules, balance values and validated runtime behaviour here before they are transplanted.
+Eruruu Patch remains the **integration sandbox for the OneBlock pack**, but version 1.0.27 completes the first major transplant into the permanent companion mods.
 
-Current migration targets:
-- **Stonecutter Sifting:** Sand Sniffer Egg bonus and Prismarine / Prismarine Bricks / Dark Prismarine recovery tables.
-- **Easy Farmer's Delight Compat:** Rich Farmer / Rich Paddy Farmer Knife equipment, Knife-aware harvesting/byproducts, Mushroom Colony Knife requirement, and later the Cutter processing block.
-- **Remain in Eruruu Patch:** THE Pick / Auto Mining, Moss Helmet interactions, OneBlock-specific renewable access and general sandbox/QoL features that do not belong to a dedicated companion mod.
+Current ownership after the migration:
+- **Stonecutter Sifting 1.1.0+:** owns the generic Sand Sniffer Egg bonus and Prismarine / Prismarine Bricks / Dark Prismarine recovery tables.
+- **Easy Farmer's Delight Compat 1.1.0+:** owns Rich Farmer / Rich Paddy Farmer Knife equipment, Knife-aware harvesting/byproducts, Mushroom Colony Knife requirements, Recipe Book/viewer integration, and the Cutter processing block.
+- **Eruruu Patch:** keeps THE Pick / Auto Mining, Moss Helmet interactions, OneBlock-specific renewable access, Nether cultures, and other pack-specific QoL. Its Stonecutter mixin now only replaces Soul Sand Crimson/Warped Roots with Eruruu's Crimson/Warped Cultures when both mods are installed.
+- **Legacy compatibility:** `eruruu_patch:cutter` remains registered so existing worlds do not lose already-placed sandbox Cutters, but it is hidden from normal progression and has no crafting recipe.
 
 ## Features
 
@@ -109,8 +110,8 @@ Cutter item stacks use the normal Minecraft BlockItem camera transforms. Their s
 - Endless Charcoal uses a special 64-item crafting recipe and is explicitly documented in JEI/EMI.
 - JEI also retains dedicated **World Interaction**, **Mob Drops**, and **Special Crafting** categories; EMI retains native **World Interaction** displays plus its custom **Mob Drops** category.
 
-#### Migration requirement
-Recipe discovery is part of the gameplay contract, not optional polish. When the Farmer/Cutter laboratory code moves to **Easy Farmer's Delight Compat**, migrate the Recipe Book metadata plus JEI/EMI integration together with the mechanics. Likewise, Stonecutter Sifting recipe/viewer documentation belongs in Stonecutter Sifting when its already-validated sandbox tables are transplanted.
+#### Migration status
+The Farmer/Cutter mechanics and their Recipe Book + JEI/EMI/Jade presentation moved together into **Easy Farmer's Delight Compat 1.1.0**. The generic sifting additions moved into **Stonecutter Sifting 1.1.0**. Historical sandbox notes below are retained as development history; Eruruu 1.0.27 no longer owns those progression/viewer entries.
 
 ### Branding
 - Eruruu artwork is used as the mod logo.
@@ -122,9 +123,9 @@ Recipe discovery is part of the gameplay contract, not optional polish. When the
 - NeoForge 21.1.235+
 - Argentum 1.0.0+
 - Farmer's Delight 1.3.2+
-- Stonecutter Sifting 1.0.0+ (temporary laboratory integration; supplied 1.1.1 runtime JAR audited as code/resource-identical to 1.0.0 apart from declared version metadata)
-- Easy Villagers 1.1.42+ (direct Cutter laboratory dependency; also required by Easy Farmer's Delight Compat)
-- Easy Farmer's Delight Compat 1.0.0+ (temporary laboratory integration)
+- Stonecutter Sifting 1.1.0+
+- Easy Villagers 1.1.42+ (kept required for legacy `eruruu_patch:cutter` world compatibility; also required by Easy Farmer's Delight Compat)
+- Easy Farmer's Delight Compat 1.1.0+
 
 JEI, EMI and Jade integrations are optional at runtime.
 

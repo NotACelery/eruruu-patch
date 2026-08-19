@@ -24,9 +24,8 @@ configurations {
 }
 
 dependencies {
-    // Temporary laboratory integrations. These exact dev JARs are compile-only and are not bundled.
+    // Culture-only Stonecutter integration. This dev JAR is compile-only and is not bundled.
     compileOnly files('devlibs/stonecutter_sifting-1.21.1-1.0.0.jar')
-    compileOnly files('devlibs/easyfarmersdelightcompat-1.21.1-1.0.0.jar')
 
     // Optional recipe viewer APIs. They are NOT bundled into Eruruu Patch.
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"

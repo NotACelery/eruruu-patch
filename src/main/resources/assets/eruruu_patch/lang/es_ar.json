@@ -34,7 +34,6 @@
   "tooltip.eruruu_patch.sugar_pickaxe_nutrition": "Restaura 2 de hambre y 3 de saturación.",
   "tooltip.eruruu_patch.reinforced_pickaxe_fusions": "Fusiones: %s / %s",
   "gui.eruruu_patch.auto_mining": "Minería automática: ACTIVADA",
-  "container.eruruu_patch.rich_farmer": "Granjero rico",
   "eruruu_patch.sifting.guaranteed": "Garantizado",
   "eruruu_patch.sifting.chance": "Probabilidad: %s",
   "eruruu_patch.sifting.random_coral": "Coral aleatorio: %s",
@@ -51,15 +50,6 @@
   "container.eruruu_patch.cutter": "Cortador",
   "gui.eruruu_patch.cutter.input": "Entrada",
   "gui.eruruu_patch.cutter.output": "Salida",
-  "jei.eruruu_patch.farmer_harvest": "Cosecha con cuchillo",
-  "emi.category.eruruu_patch.farmer_harvest": "Cosecha con cuchillo",
-  "eruruu_patch.viewer.farmer_harvest.rice": "Rich Paddy + cuchillo: arroz maduro → arroz.",
-  "eruruu_patch.viewer.farmer_harvest.mushroom": "Rich Farmer + cuchillo: colonia completa → 3 champiñones.",
-  "jei.eruruu_patch.cutter_axe": "Acciones de hacha del Cutter",
-  "emi.category.eruruu_patch.cutter_axe": "Acciones de hacha del Cutter",
-  "eruruu_patch.viewer.cutter_axe.strip": "Descortezar con hacha",
-  "eruruu_patch.viewer.cutter_axe.scrape": "Raspar oxidación con hacha",
-  "eruruu_patch.viewer.cutter_axe.wax_off": "Quitar cera con hacha",
   "tooltip.eruruu_patch.cutter.variant": "Variante: %s",
   "variant.eruruu_patch.cutter.oak": "Roble",
   "variant.eruruu_patch.cutter.spruce": "Abeto",
@@ -74,7 +64,5 @@
   "jade.eruruu_patch.cutter.tool": "Herramienta: %s",
   "jade.eruruu_patch.cutter.products": "Productos generados:",
   "jade.eruruu_patch.cutter.product_entry": "- %sx %s",
-  "jade.eruruu_patch.cutter.products_empty": "Productos generados: ninguno",
-  "jei.eruruu_patch.cutter_variants": "Variantes del Cutter",
-  "jade.eruruu_patch.farmer.knife": "Cuchillo: %s"
+  "jade.eruruu_patch.cutter.products_empty": "Productos generados: ninguno"
 }

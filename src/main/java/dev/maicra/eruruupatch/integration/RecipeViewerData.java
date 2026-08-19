@@ -2,20 +2,13 @@ package dev.maicra.eruruupatch.integration;
 
 import dev.maicra.eruruupatch.EruruuPatch;
 import dev.maicra.eruruupatch.ModItems;
-import dev.maicra.eruruupatch.compat.easyfarmers.AxeActionResolver;
-import dev.maicra.eruruupatch.compat.easyfarmers.FarmerToolSupport;
-import dev.maicra.eruruupatch.compat.easyfarmers.CutterLogVariant;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.block.Block;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public final class RecipeViewerData {
@@ -102,84 +95,7 @@ public final class RecipeViewerData {
             )
     );
 
-    /**
-     * Concrete tool-aware harvest cases that can be represented faithfully in recipe viewers.
-     * Generic crop loot remains data-driven: Rich Farmers pass the real equipped Knife into
-     * the crop loot table rather than fabricating a fixed byproduct list here.
-     */
-    public static final List<FarmerHarvestInfo> FARMER_HARVESTS = List.of(
-            new FarmerHarvestInfo(
-                    id("farmer_harvest/rice_with_knife"),
-                    stack("farmersdelight", "rice_panicle"),
-                    Ingredient.of(FarmerToolSupport.KNIVES),
-                    List.of(stack("farmersdelight", "rice")),
-                    Component.translatable("eruruu_patch.viewer.farmer_harvest.rice")
-            ),
-            new FarmerHarvestInfo(
-                    id("farmer_harvest/brown_mushroom_colony"),
-                    stack("farmersdelight", "brown_mushroom_colony"),
-                    Ingredient.of(FarmerToolSupport.KNIVES),
-                    List.of(new ItemStack(Items.BROWN_MUSHROOM, 3)),
-                    Component.translatable("eruruu_patch.viewer.farmer_harvest.mushroom")
-            ),
-            new FarmerHarvestInfo(
-                    id("farmer_harvest/red_mushroom_colony"),
-                    stack("farmersdelight", "red_mushroom_colony"),
-                    Ingredient.of(FarmerToolSupport.KNIVES),
-                    List.of(new ItemStack(Items.RED_MUSHROOM, 3)),
-                    Component.translatable("eruruu_patch.viewer.farmer_harvest.mushroom")
-            )
-    );
-
-    /**
-     * Enumerates every item-form axe transformation the Cutter fallback can actually
-     * resolve in the current registry/data-map state. This includes vanilla stripping,
-     * copper scraping/unwaxing and compatible modded block transformations.
-     */
-    public static List<CutterAxeInfo> cutterAxeActions() {
-        List<CutterAxeInfo> actions = new ArrayList<>();
-        ItemStack representativeAxe = new ItemStack(Items.IRON_AXE);
-        Ingredient axes = Ingredient.of(ItemTags.AXES);
-
-        for (Item item : BuiltInRegistries.ITEM) {
-            ItemStack input = item.getDefaultInstance();
-            if (input.isEmpty()) {
-                continue;
-            }
-            AxeActionResolver.resolve(input, representativeAxe).ifPresent(result -> {
-                ResourceLocation inputId = BuiltInRegistries.ITEM.getKey(item);
-                String action = result.action().name().toLowerCase(java.util.Locale.ROOT);
-                ResourceLocation recipeId = ResourceLocation.fromNamespaceAndPath(
-                        EruruuPatch.MOD_ID,
-                        "cutter_axe/" + action + "/" + inputId.getNamespace() + "/" + inputId.getPath()
-                );
-                actions.add(new CutterAxeInfo(
-                        recipeId,
-                        input.copyWithCount(1),
-                        axes,
-                        result.output().copy(),
-                        Component.translatable("eruruu_patch.viewer.cutter_axe." + action)
-                ));
-            });
-        }
-        return List.copyOf(actions);
-    }
-
-
-    /** One JEI-only entry per supported Cutter work-surface material. */
-    public static final List<CutterVariantInfo> CUTTER_VARIANTS = CutterLogVariant.SUPPORTED.stream()
-            .map(RecipeViewerData::cutterVariant)
-            .toList();
-
-    private static CutterVariantInfo cutterVariant(Block material) {
-        ResourceLocation materialId = BuiltInRegistries.BLOCK.getKey(material);
-        return new CutterVariantInfo(
-                id("cutter_variant/" + materialId.getPath()),
-                new ItemStack(material.asItem()),
-                CutterLogVariant.createCutter(material),
-                Component.translatable(CutterLogVariant.translationKey(material))
-        );
-    }
+    // Farmer Knife harvesting and Cutter viewer data moved to Easy Farmer's Delight Compat 1.1.0.
 
     public static final List<SpecialCraftingInfo> SPECIAL_CRAFTING = List.of(
             new SpecialCraftingInfo(

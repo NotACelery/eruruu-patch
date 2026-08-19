@@ -4,9 +4,7 @@
   "package": "dev.maicra.eruruupatch.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "StonecutterSiftingTablesMixin",
-    "CompatFarmerBlockEntityMixin",
-    "CompatFarmerBlockMixin"
+    "StonecutterSiftingTablesMixin"
   ],
   "client": [
     "MinecraftAutoMiningMixin",

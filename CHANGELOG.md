@@ -1,3 +1,19 @@
+# Eruruu Patch 1.0.27 — migration cleanup compile fix
+
+- `build-dev.bat` now reads `mod_version` from `gradle.properties` instead of hardcoding 1.0.26.
+- `build-dev.bat` automatically runs the idempotent `cleanup-migrated-features.bat` before Gradle, preventing stale migrated sources from reaching `compileJava`.
+- The cleanup now verifies that `CompatFarmerBlockMixin.java` and `CutterAxeEmiRecipe.java` were actually removed and aborts the build if cleanup is incomplete.
+- No gameplay behavior changes; this only makes the 1.0.27 migration/cleanup flow safe to execute in one step.
+
+# Eruruu Patch 1.0.27 — Migration Cleanup
+
+- Completed ownership transfer of generic Stonecutter Sifting additions and Easy Farmer's Delight Farmer/Cutter mechanics into their 1.1.0 destination mods.
+- Stonecutter integration is now culture-only: Soul Sand Crimson/Warped Roots are replaced by Eruruu Crimson/Warped Cultures, while Sniffer Egg and Prismarine outputs remain owned by Stonecutter Sifting.
+- Removed Eruruu Farmer Knife mixins, Farmer menus/screens, Knife harvest helpers, migrated JEI/EMI/Jade categories, and migrated display-recipe serializers from active code.
+- Kept `eruruu_patch:cutter` registered as a hidden legacy machine so existing worlds do not lose already-placed sandbox Cutters; its old crafting recipe is removed.
+- Added `cleanup-migrated-features.bat`, a one-time exact-path cleanup for source files/resources that a ZIP overlay cannot delete, plus stale build output and the no-longer-needed EasyFD 1.0.0 compile JAR.
+- Easy Farmer's Delight Compat and Stonecutter Sifting now require 1.1.0+.
+
 # Eruruu Patch 1.0.26 — Final Sandbox
 
 - Added Jade status for the protected Knife equipped in Rich Farmer and Rich Paddy Farmer.

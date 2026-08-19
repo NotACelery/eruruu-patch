@@ -34,7 +34,6 @@
   "tooltip.eruruu_patch.sugar_pickaxe_nutrition": "Restores 2 hunger and 3 saturation.",
   "tooltip.eruruu_patch.reinforced_pickaxe_fusions": "Fusions: %s / %s",
   "gui.eruruu_patch.auto_mining": "Auto Mining: ON",
-  "container.eruruu_patch.rich_farmer": "Rich Farmer",
   "eruruu_patch.sifting.guaranteed": "Guaranteed",
   "eruruu_patch.sifting.chance": "Chance: %s",
   "eruruu_patch.sifting.random_coral": "Random coral: %s",
@@ -51,15 +50,6 @@
   "container.eruruu_patch.cutter": "Cutter",
   "gui.eruruu_patch.cutter.input": "Input",
   "gui.eruruu_patch.cutter.output": "Output",
-  "jei.eruruu_patch.farmer_harvest": "Knife Harvesting",
-  "emi.category.eruruu_patch.farmer_harvest": "Knife Harvesting",
-  "eruruu_patch.viewer.farmer_harvest.rice": "Rich Paddy + Knife: mature Rice → Rice.",
-  "eruruu_patch.viewer.farmer_harvest.mushroom": "Rich Farmer + Knife: full colony → 3 mushrooms.",
-  "jei.eruruu_patch.cutter_axe": "Cutter Axe Actions",
-  "emi.category.eruruu_patch.cutter_axe": "Cutter Axe Actions",
-  "eruruu_patch.viewer.cutter_axe.strip": "Strip with an Axe",
-  "eruruu_patch.viewer.cutter_axe.scrape": "Scrape oxidation with an Axe",
-  "eruruu_patch.viewer.cutter_axe.wax_off": "Remove wax with an Axe",
   "tooltip.eruruu_patch.cutter.variant": "Variant: %s",
   "variant.eruruu_patch.cutter.oak": "Oak",
   "variant.eruruu_patch.cutter.spruce": "Spruce",
@@ -74,7 +64,5 @@
   "jade.eruruu_patch.cutter.tool": "Tool: %s",
   "jade.eruruu_patch.cutter.products": "Generated products:",
   "jade.eruruu_patch.cutter.product_entry": "- %sx %s",
-  "jade.eruruu_patch.cutter.products_empty": "Generated products: none",
-  "jei.eruruu_patch.cutter_variants": "Cutter Variants",
-  "jade.eruruu_patch.farmer.knife": "Knife: %s"
+  "jade.eruruu_patch.cutter.products_empty": "Generated products: none"
 }
