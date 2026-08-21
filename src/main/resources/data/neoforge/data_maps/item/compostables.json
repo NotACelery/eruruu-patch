@@ -12,7 +12,27 @@
       "chance": 0.3,
       "can_villager_compost": true
     },
+    "argentum:batata_semilla": {
+      "chance": 0.3,
+      "can_villager_compost": true
+    },
+    "argentum:yerba": {
+      "chance": 0.65
+    },
+    "argentum:te": {
+      "chance": 0.65
+    },
+    "argentum:membrillo": {
+      "chance": 0.65
+    },
     "argentum:batata": {
+      "chance": 0.65
+    },
+    "#eruruu_patch:compostables/magebloom_planting": {
+      "chance": 0.3,
+      "can_villager_compost": true
+    },
+    "#eruruu_patch:compostables/magebloom_harvest": {
       "chance": 0.65
     }
   }

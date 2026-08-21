@@ -39,5 +39,6 @@
   "commands.eruruu_patch.givepick.blacklisted": "%s is excluded from THE Pick reinforcement.",
   "commands.eruruu_patch.givepick.invalid_pickaxe": "%s cannot be used as a reinforced pickaxe base.",
   "commands.eruruu_patch.givepick.failed": "Could not create %s at level %s.",
-  "commands.eruruu_patch.givepick.success": "Gave %s (level %s) to %s."
+  "commands.eruruu_patch.givepick.success": "Gave %s (level %s) to %s.",
+  "gui.eruruu_patch.switch_recipe_result": "Switch Recipe Result"
 }

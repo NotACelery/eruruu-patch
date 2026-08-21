@@ -96,14 +96,19 @@ Every valid attempt consumes one Bone Meal. Each attempt has a 10% total success
 ### Argentum crop compatibility
 Eruruu Patch extends the vanilla `minecraft:villager_plantable_seeds` item tag with Argentum's Yerba seed, Tea seed, Batata and Membrillo seed. This lets compatible Farmers recognize those four Argentum crops through the normal seed/crop path.
 
-To prevent automated Argentum farms from filling storage with excess planting items, those same crops can also be recycled through a normal Composter:
+To prevent automated Argentum farms from filling storage with excess crop stock, all four planting items and their direct harvests can be recycled through a normal Composter:
 
-- Yerba Mate Seed: 30% compost chance
-- Tea Seed: 30% compost chance
-- Membrillo Seed: 30% compost chance
-- Batata: 65% compost chance
+- Yerba Mate Seed, Tea Seed, Membrillo Seed and Batata Seed: 30% compost chance.
+- Yerba, Tea, Membrillo and Batata: 65% compost chance.
+
+When Ars Nouveau is installed, Magebloom follows the same crop rule without becoming a required dependency: Magebloom Crop composts at 30% and harvested Magebloom at 65%. Magebloom Fiber is intentionally excluded as a processed product.
 
 This uses NeoForge's standard compostable item data map, so manual composting, hopper-fed Composters and normal Composter behavior remain unchanged.
+
+### Generic crafting recipe conflict resolver
+When two or more installed crafting recipes genuinely match the same current 2x2 or 3x3 grid but produce different results, Eruruu adds a small selector beside the output slot. The player can inspect the matching outputs and choose which recipe should be authoritative.
+
+The selection is stored by recipe ID, validated by the server against the live grid, retained during repeated crafting while still valid, and also controls recipe-specific remainders such as buckets or other containers. The resolver is generic: it does not hardcode particular mod namespaces and JEI/EMI/Recipe Book can continue filling the vanilla crafting grid normally.
 
 ### Recipe viewers / recipe discovery
 - Normal Eruruu crafting/stonecutting recipes are real recipe JSONs, so the vanilla Recipe Book, JEI and EMI discover them normally.
@@ -123,7 +128,7 @@ The first migration landed in 1.0.27. Version **1.0.28 completes the cleanup** b
 - Argentum 1.0.0+
 - Farmer's Delight 1.3.2+
 
-JEI and EMI integrations are optional at runtime.
+JEI and EMI integrations are optional at runtime. **Ars Nouveau is also optional**; when present, Eruruu only adds the Magebloom composting QoL described above.
 
 **Stonecutter Sifting and Easy Farmer's Delight Compat are not dependencies of Eruruu Patch.** They can be installed alongside it in the OneBlock pack, but 1.0.28 contains no runtime integration with either project.
 

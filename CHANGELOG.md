@@ -1,3 +1,16 @@
+# Unreleased — Next Wave
+
+## Generic crafting recipe conflict resolver
+- Added a generic 2x2/3x3 crafting conflict resolver for cases where multiple installed recipes match the same current ingredient grid but produce semantically different results.
+- The selector stores choices by recipe ID, stays server-authoritative, preserves the chosen recipe during repeated crafting while it remains valid, and validates every client request against the live grid.
+- Selected recipes also control crafting remainders/containers; the implementation does not merely swap the visible result stack.
+- The client adds a compact scrollable result selector beside the vanilla output slot for both the personal inventory grid and Crafting Table.
+- The resolver contains no Argentum/Farmer's Delight hardcode and does not depend on Polymorph, JEI or EMI.
+
+## Composting QoL expansion
+- Completed Argentum composting coverage: all four planting items compost at 30%, while Yerba, Tea, Membrillo and Batata direct harvests compost at 65%.
+- Added optional Ars Nouveau Magebloom composting: Magebloom Crop at 30% and Magebloom at 65%. Optional item tags keep this compatibility safe when Ars Nouveau is absent.
+
 # Eruruu Patch 1.0.28 — final migration cleanup / project decoupling
 
 ## Argentum composting QoL

@@ -39,5 +39,6 @@
   "commands.eruruu_patch.givepick.blacklisted": "%s está excluida del refuerzo de THE Pick.",
   "commands.eruruu_patch.givepick.invalid_pickaxe": "%s no puede usarse como base para una picota reforzada.",
   "commands.eruruu_patch.givepick.failed": "No se pudo crear %s en nivel %s.",
-  "commands.eruruu_patch.givepick.success": "Se entregó %s (nivel %s) a %s."
+  "commands.eruruu_patch.givepick.success": "Se entregó %s (nivel %s) a %s.",
+  "gui.eruruu_patch.switch_recipe_result": "Cambiar resultado de receta"
 }
