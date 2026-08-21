@@ -13,8 +13,7 @@ description='''
 Compatibility and quality-of-life patch made for Eruruu's Cult OneBlock.
 Adds renewable OneBlock-friendly resources, Farmer's Delight wild-crop access, Argentum seed recipes, Fertilizer,
 Endless Charcoal, starter mushrooms, Nether cultures, extra mob loot, reinforced AFK pickaxes and Sugar Rush Haste foods.
-Stonecutter Sifting integration is intentionally limited to Eruruu-owned additions such as Crimson/Warped Culture Soul Sand outputs;
-generic sifting tables and Easy Farmer's Delight Knife/Cutter behavior are owned by their respective 1.1.0 mods.
+All gameplay in this mod is implemented by Eruruu Patch itself; features previously prototyped here for companion mods were fully removed in 1.0.28.
 '''
 
 [[mixins]]
@@ -61,32 +60,3 @@ type="optional"
 versionRange="[1.1.24,)"
 ordering="AFTER"
 side="CLIENT"
-
-[[dependencies.${mod_id}]]
-modId="jade"
-type="optional"
-versionRange="[15,)"
-ordering="AFTER"
-side="CLIENT"
-
-[[dependencies.${mod_id}]]
-modId="stonecutter_sifting"
-type="required"
-versionRange="[1.1.0,)"
-ordering="AFTER"
-side="BOTH"
-
-[[dependencies.${mod_id}]]
-modId="easy_villagers"
-type="required"
-reason="Legacy Eruruu Cutter data remains readable for existing worlds."
-versionRange="[1.1.42,)"
-ordering="AFTER"
-side="BOTH"
-
-[[dependencies.${mod_id}]]
-modId="easyfarmersdelightcompat"
-type="required"
-versionRange="[1.1.0,)"
-ordering="AFTER"
-side="BOTH"

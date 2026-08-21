@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "eruruu_patch:block/cutter" },
-    "facing=south": { "model": "eruruu_patch:block/cutter", "y": 180 },
-    "facing=west": { "model": "eruruu_patch:block/cutter", "y": 270 },
-    "facing=east": { "model": "eruruu_patch:block/cutter", "y": 90 }
-  }
-}

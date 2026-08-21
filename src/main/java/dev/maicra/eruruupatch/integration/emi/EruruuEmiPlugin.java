@@ -14,7 +14,7 @@ import java.util.List;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 
-/** EMI now documents only Eruruu-owned behavior; Farmer/Cutter docs live in EasyFD 1.1.0. */
+/** EMI documentation for Eruruu Patch world interactions, mob drops and special crafting. */
 @EmiEntrypoint
 public final class EruruuEmiPlugin implements EmiPlugin {
     public static final EmiRecipeCategory MOB_DROPS = new EmiRecipeCategory(

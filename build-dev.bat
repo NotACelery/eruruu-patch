@@ -8,7 +8,7 @@ set "DIST_ROOT=%CD%\.gradle-dist"
 set "DIST_DIR=%DIST_ROOT%\gradle-%GRADLE_VERSION%"
 set "DIST_ZIP=%DIST_ROOT%\gradle-%GRADLE_VERSION%-bin.zip"
 set "JAVA_EXE="
-set "MOD_VERSION=1.0.27"
+set "MOD_VERSION=1.0.28"
 if exist "gradle.properties" (
     for /f "tokens=1,* delims==" %%A in ('findstr /b /c:"mod_version=" "gradle.properties"') do set "MOD_VERSION=%%B"
 )
@@ -19,15 +19,20 @@ echo ============================================================
 echo Directorio: %CD%
 echo.
 
+
 rem ------------------------------------------------------------
-rem 0. Limpieza automatica de residuos migrados (idempotente).
+rem 0. Limpiar residuos de versiones anteriores si el source fue
+rem    extraido encima de una carpeta existente.
 rem ------------------------------------------------------------
 if exist "cleanup-migrated-features.bat" (
-    echo Ejecutando limpieza post-migracion antes de compilar...
     call "cleanup-migrated-features.bat"
-    if errorlevel 1 goto :cleanup_failed
-    echo.
+    if errorlevel 1 (
+        echo.
+        echo ERROR: Fallo la limpieza de residuos de Eruruu.
+        goto :failure
+    )
 )
+echo.
 
 rem ------------------------------------------------------------
 rem 1. Buscar Java: PATH, JAVA_HOME y runtimes administrados por Prism.
@@ -117,11 +122,6 @@ echo   %CD%\%JAR_FILE%
 echo ============================================================
 goto :success
 
-:cleanup_failed
-echo.
-echo ERROR: La limpieza post-migracion fallo.
-echo No se inicia Gradle para evitar compilar fuentes obsoletas.
-goto :failure
 
 :java_missing
 echo.

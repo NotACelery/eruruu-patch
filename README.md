@@ -5,13 +5,23 @@ Small NeoForge 1.21.1 compatibility/QoL patch for **Eruruu's Cult OneBlock**.
 The design goal is to remove OneBlock-specific resource locks without turning the pack into a vending machine: most new acquisition methods require renewable inputs, infrastructure, time, or low-probability processing.
 
 ## Sandbox / migration policy
-Eruruu Patch remains the **integration sandbox for the OneBlock pack**, but version 1.0.27 completes the first major transplant into the permanent companion mods.
+Eruruu Patch remains the **integration sandbox for the OneBlock pack**, but version **1.0.28 finishes the cleanup that 1.0.27 left incomplete**.
 
-Current ownership after the migration:
-- **Stonecutter Sifting 1.1.0+:** owns the generic Sand Sniffer Egg bonus and Prismarine / Prismarine Bricks / Dark Prismarine recovery tables.
-- **Easy Farmer's Delight Compat 1.1.0+:** owns Rich Farmer / Rich Paddy Farmer Knife equipment, Knife-aware harvesting/byproducts, Mushroom Colony Knife requirements, Recipe Book/viewer integration, and the Cutter processing block.
-- **Eruruu Patch:** keeps THE Pick / Auto Mining, Moss Helmet interactions, OneBlock-specific renewable access, Nether cultures, and other pack-specific QoL. Its Stonecutter mixin now only replaces Soul Sand Crimson/Warped Roots with Eruruu's Crimson/Warped Cultures when both mods are installed.
-- **Legacy compatibility:** `eruruu_patch:cutter` remains registered so existing worlds do not lose already-placed sandbox Cutters, but it is hidden from normal progression and has no crafting recipe.
+The rule after 1.0.28 is strict: once an experimental feature has moved into another project, Eruruu removes the implementation completely instead of keeping compatibility hooks or a hidden legacy copy.
+
+That means Eruruu Patch now contains only its own OneBlock/QoL systems. It no longer calls into, mixes into, aliases ids from, or requires **Stonecutter Sifting** or **Easy Farmer's Delight Compat**.
+
+### 1.0.28 final decoupling
+Version 1.0.27 moved the main Farmer/Cutter and generic sifting experiments into their permanent projects, but some leftovers still remained in Eruruu. Version 1.0.28 removes the rest:
+- the complete legacy Cutter runtime and all of its helpers, renderers, menus, resources and Jade integration;
+- the old Farmer Knife/Harvest Tool compatibility code and the historical `EruruuKnife` migration hook;
+- the old Stonecutter Sifting mixin and compile-time development JAR;
+- all registry aliases for `eruruu_patch:cutter`;
+- stale Cutter and migrated-sifting resources/localization.
+
+There is intentionally **no old-world migration layer** for those sandbox-only experiments. They only existed in the private development/test world used while the features were being designed.
+
+Crimson and Warped Cultures are entirely native Eruruu mechanics: **9 vanilla Crimson Roots craft a Crimson Culture, and 9 vanilla Warped Roots craft a Warped Culture**. Stonecutter Sifting is not involved in creating either item.
 
 ## Features
 
@@ -83,35 +93,24 @@ Every valid attempt consumes one Bone Meal. Each attempt has a 10% total success
 - Survival consumes one Bone Meal; creative mode does not.
 - With the Moss Helmet equipped, right-clicking a Moss Block with any Hoe converts it to Dirt and consumes 1 point of Hoe durability.
 
-### Easy Villagers × Argentum
-Eruruu Patch extends the vanilla `minecraft:villager_plantable_seeds` item tag with Argentum's Yerba seed, Tea seed, Batata and Membrillo seed. This lets the Easy Villagers Farmer recognize those four Argentum crops through its normal seed/crop path.
+### Argentum crop compatibility
+Eruruu Patch extends the vanilla `minecraft:villager_plantable_seeds` item tag with Argentum's Yerba seed, Tea seed, Batata and Membrillo seed. This lets compatible Farmers recognize those four Argentum crops through the normal seed/crop path.
 
-### Cutter variants, item identity and Jade — 1.0.25
+To prevent automated Argentum farms from filling storage with excess planting items, those same crops can also be recycled through a normal Composter:
 
-### Cutter item icon and creative cloning
-Cutter item stacks use the normal Minecraft BlockItem camera transforms. Their stored material is rendered at the same workstation anchor as the log/Bamboo block on a placed Cutter, so the item remains visually recognizable as the full machine while still exposing its variant. Creative Pick Block copies only that material variant; it never copies the stored Villager, tool, inputs, outputs or progress.
+- Yerba Mate Seed: 30% compost chance
+- Tea Seed: 30% compost chance
+- Membrillo Seed: 30% compost chance
+- Batata: 65% compost chance
 
-- Cutter supports nine visual work-surface variants: **Oak, Spruce, Birch, Jungle, Acacia, Dark Oak, Mangrove, Cherry and Bamboo**. Bamboo uses `minecraft:bamboo_block`; all variants remain part of the same `#eruruu_patch:cutter_logs` recipe ingredient so the Recipe Book/JEI/EMI still show only one Cutter recipe.
-- **Creative/search presentation:** the canonical Cutter remains visible in Eruruu Patch's own Creative tab, while all nine variants are injected directly into vanilla Search rather than inheriting Eruruu's parent-tab search membership. This avoids vanilla adding a duplicate blue `Eruruu Patch` Creative-category line above the normal variant tooltip/mod-name line.
-- The Cutter item tooltip includes a localized `Variant / Variante` line. Oak is still the zero-data/default variant for backwards compatibility; non-Oak variants carry only the minimal canonical BlockEntity variant data when otherwise empty.
-- Cutter items use a variant-aware custom item renderer: the regular Cutter enclosure remains visible while the stored log/Bamboo block is rendered prominently inside the icon. This is intentionally visual-only and does not change crafting, stacking or placed-block state.
-- Empty Cutters stack only with empty Cutters of the **same variant**. A previously used machine that is completely emptied before being broken again returns to the canonical empty representation and may stack with empty Cutters of its own variant. Populated machines remain max-stack-size 1.
-- **Jade integration is optional.** When Jade is installed, looking at a Cutter reports its variant, equipped processing tool and the actual products currently present in its four output slots. The tooltip reports real synchronized machine contents, not guessed/fabricated recipe outputs.
-- These item/Jade affordances are part of the Cutter migration contract and must move to Easy Farmer's Delight Compat together with the machine.
+This uses NeoForge's standard compostable item data map, so manual composting, hopper-fed Composters and normal Composter behavior remain unchanged.
 
 ### Recipe viewers / recipe discovery
 - Normal Eruruu crafting/stonecutting recipes are real recipe JSONs, so the vanilla Recipe Book, JEI and EMI discover them normally.
-- **Cutter (1.0.24):** one real custom 3x3 `ShapedRecipe` is exposed to the vanilla Recipe Book, JEI and EMI. Its displayed result is the canonical **Oak Cutter**, while the log ingredient is the full `#eruruu_patch:cutter_logs` tag, so there is only one recipe entry even though any supported log can be used.
-- **Paddy Farmer, Rich Farmer and Rich Paddy Farmer** are special because Easy Farmer's Delight Compat must preserve the center Farmer BlockItem's stored BlockEntity data. Eruruu 1.0.23 therefore adds display-only 3x3 `ShapedRecipe` representations for Recipe Book/JEI/EMI. Those display recipes expose the exact ingredient grid and result but always return `false` from `matches()` and never assemble an output; after Recipe Book placement, EasyFD's original custom upgrade recipe remains the only authoritative craft and performs the data copy.
-- The 1.0.23 hotfix deliberately subclasses vanilla `ShapedRecipe` rather than the removed Forge `IShapedRecipe` interface. This is required on Minecraft/NeoForge 1.21.1 and also lets vanilla recipe placement recognize the intended 3x3 dimensions.
-- **JEI / EMI — Farmer's Delight Cutting:** Cutter is registered as another workstation/catalyst for Farmer's Delight's native Cutting category. In 1.0.24 JEI builds the category key from the registered `farmersdelight:cutting` vanilla recipe type, matching Farmer's Delight's own JEI definition; EMI resolves Farmer's Delight's exact native category instance before adding the workstation. Cutting Board recipes remain the single source of truth for Knife/Axe inputs, outputs, chances and addon/datapack recipes.
-- **JEI / EMI — Knife Harvesting:** dedicated documentation covers the Knife-sensitive sandbox cases (Rice and mature Mushroom Colonies) and points players at Rich Farmer / Rich Paddy Farmer as applicable workstations. Ordinary crops still rely on their installed loot tables; Eruruu does not fabricate a fake universal Straw result.
-- **JEI / EMI — Cutter Axe Actions:** strip, Copper scrape and unwax displays are generated from the same `AxeActionResolver` used by the real Cutter so viewer documentation cannot drift into a separate hardcoded rule set. Unwaxing never shows/returns Honeycomb.
 - Endless Charcoal uses a special 64-item crafting recipe and is explicitly documented in JEI/EMI.
-- JEI also retains dedicated **World Interaction**, **Mob Drops**, and **Special Crafting** categories; EMI retains native **World Interaction** displays plus its custom **Mob Drops** category.
-
+- JEI retains Eruruu-owned **World Interaction**, **Mob Drops**, and **Special Crafting** categories; EMI retains native **World Interaction** displays plus its custom **Mob Drops** category.
 #### Migration status
-The Farmer/Cutter mechanics and their Recipe Book + JEI/EMI/Jade presentation moved together into **Easy Farmer's Delight Compat 1.1.0**. The generic sifting additions moved into **Stonecutter Sifting 1.1.0**. Historical sandbox notes below are retained as development history; Eruruu 1.0.27 no longer owns those progression/viewer entries.
+The first migration landed in 1.0.27. Version **1.0.28 completes the cleanup** by deleting every remaining runtime hook, alias, mixin, devlib and resource that connected Eruruu to the migrated Farmer/Cutter or generic sifting experiments. The companion mods can still be installed in the same modpack, but Eruruu does not depend on or modify them.
 
 ### Branding
 - Eruruu artwork is used as the mod logo.
@@ -123,11 +122,10 @@ The Farmer/Cutter mechanics and their Recipe Book + JEI/EMI/Jade presentation mo
 - NeoForge 21.1.235+
 - Argentum 1.0.0+
 - Farmer's Delight 1.3.2+
-- Stonecutter Sifting 1.1.0+
-- Easy Villagers 1.1.42+ (kept required for legacy `eruruu_patch:cutter` world compatibility; also required by Easy Farmer's Delight Compat)
-- Easy Farmer's Delight Compat 1.1.0+
 
-JEI, EMI and Jade integrations are optional at runtime.
+JEI and EMI integrations are optional at runtime.
+
+**Stonecutter Sifting and Easy Farmer's Delight Compat are not dependencies of Eruruu Patch.** They can be installed alongside it in the OneBlock pack, but 1.0.28 contains no runtime integration with either project.
 
 ## Development
 This project targets Java 21 and ModDevGradle. The supplied Gradle files are the canonical source build. The distributed JAR is also compile-checked directly against NeoForge 1.21.1 classes and the exact JEI/EMI API JARs used by the Eruruu OneBlock instance.
@@ -163,6 +161,10 @@ The item argument uses the normal registry, so modded pickaxe IDs autocomplete n
 - Temporary air while a OneBlock/cobblestone/stone/basalt generator regenerates does not turn the toggle off.
 - Inventory, chests, backpacks, crafting screens, JEI/EMI, chat and other GUIs may stay open while mining continues. Clicking inside those interfaces does not toggle Auto Mining. The ON indicator is hidden while a screen is open so it never overlays GUI slots, and returns when the player closes the screen.
 - A second left click in the world toggles it off. It also cancels when the player moves, removes THE Pick from the main hand, dies, changes dimension, or leaves the world. Rotating the camera does not cancel it.
+
+## Historical sandbox archive
+
+The sections below document how features were developed and validated inside Eruruu before migration. They are retained as project history and **do not describe active Farmer/Cutter or generic Stonecutter gameplay in Eruruu Patch 1.0.28**.
 
 ### Laboratory integrations in 1.0.15
 

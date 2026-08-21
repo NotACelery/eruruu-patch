@@ -1,7 +1,6 @@
 package dev.maicra.eruruupatch;
 
 import dev.maicra.eruruupatch.item.EndlessCharcoalItem;
-import dev.maicra.eruruupatch.item.CutterItem;
 import dev.maicra.eruruupatch.item.FertilizerItem;
 import dev.maicra.eruruupatch.item.NyliumCultureItem;
 import java.util.List;
@@ -12,7 +11,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.DyedItemColor;
@@ -83,12 +81,6 @@ public final class ModItems {
     public static final DeferredHolder<Item, Item> ERURUU_ICON =
             ITEMS.register("eruruu_icon", () -> new Item(new Item.Properties().stacksTo(1)));
 
-    /** Laboratory Cutter block item. Contents persist through BLOCK_ENTITY_DATA. */
-    public static final DeferredHolder<Item, Item> CUTTER =
-            ITEMS.register("cutter", () -> new CutterItem(
-                    dev.maicra.eruruupatch.registry.ModBlocks.CUTTER.get(),
-                    new Item.Properties()
-            ));
 
     private static Item.Properties hasteFoodProperties(int amplifier, boolean glint, String tooltipKey) {
         // nutrition=2 restores two hunger points. A 0.75 saturation modifier gives

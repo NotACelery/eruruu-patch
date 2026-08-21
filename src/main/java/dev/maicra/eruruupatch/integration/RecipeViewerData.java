@@ -95,8 +95,6 @@ public final class RecipeViewerData {
             )
     );
 
-    // Farmer Knife harvesting and Cutter viewer data moved to Easy Farmer's Delight Compat 1.1.0.
-
     public static final List<SpecialCraftingInfo> SPECIAL_CRAFTING = List.of(
             new SpecialCraftingInfo(
                     id("endless_charcoal"),

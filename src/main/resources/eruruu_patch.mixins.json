@@ -3,9 +3,7 @@
   "minVersion": "0.8",
   "package": "dev.maicra.eruruupatch.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "StonecutterSiftingTablesMixin"
-  ],
+  "mixins": [],
   "client": [
     "MinecraftAutoMiningMixin",
     "ScreenPauseMixin"

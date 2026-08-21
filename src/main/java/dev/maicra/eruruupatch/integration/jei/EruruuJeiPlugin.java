@@ -12,7 +12,7 @@ import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.resources.ResourceLocation;
 
-/** JEI now documents only Eruruu-owned behavior; Farmer/Cutter docs live in EasyFD 1.1.0. */
+/** JEI documentation for Eruruu Patch world interactions, mob drops and special crafting. */
 @JeiPlugin
 public final class EruruuJeiPlugin implements IModPlugin {
     public static final RecipeType<WorldInteractionInfo> WORLD_INTERACTION =

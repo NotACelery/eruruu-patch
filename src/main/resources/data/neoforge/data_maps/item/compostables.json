@@ -1,0 +1,19 @@
+{
+  "values": {
+    "argentum:yerba_semilla": {
+      "chance": 0.3,
+      "can_villager_compost": true
+    },
+    "argentum:te_semilla": {
+      "chance": 0.3,
+      "can_villager_compost": true
+    },
+    "argentum:membrillo_semilla": {
+      "chance": 0.3,
+      "can_villager_compost": true
+    },
+    "argentum:batata": {
+      "chance": 0.65
+    }
+  }
+}

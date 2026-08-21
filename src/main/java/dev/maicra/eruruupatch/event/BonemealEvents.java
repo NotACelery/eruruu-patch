@@ -300,7 +300,9 @@ public final class BonemealEvents {
             event.getStack().shrink(1);
         }
 
-        level.levelEvent(1505, mushroomPos, 15);
+        // The guaranteed Bone Meal feedback belongs on the clicked soil block.
+        // mushroomPos is AIR on failed rolls, which makes the vanilla 1505 effect invisible.
+        level.levelEvent(1505, soilPos, 15);
 
         if (level.getRandom().nextFloat() < MUSHROOM_CHANCE) {
             Block mushroom = level.getRandom().nextBoolean() ? Blocks.BROWN_MUSHROOM : Blocks.RED_MUSHROOM;

@@ -24,8 +24,6 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.SUGAR_BLOCK.get());
                         output.accept(ModItems.SUGAR_PICKAXE.get());
                         output.accept(ModItems.ENCHANTED_SUGAR_PICKAXE.get());
-                        // The migrated Cutter is now owned by Easy Farmer's Delight Compat 1.1.0.
-                        // Legacy eruruu_patch:cutter items remain registered for world compatibility.
                     })
                     .build());
 

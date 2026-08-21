@@ -1,0 +1,14 @@
+ERURUU PATCH 1.0.28 — ARGENTUM COMPOSTING HOTFIX
+
+Apply by extracting this ZIP over the Eruruu Patch project root.
+
+Changes:
+- Argentum Yerba Mate Seed: 30% Composter chance.
+- Argentum Tea Seed: 30% Composter chance.
+- Argentum Membrillo Seed: 30% Composter chance.
+- Argentum Batata: 65% Composter chance.
+- Seed entries allow Villager composting.
+- Restores the previously agreed mushroom Bone Meal particle fix that was absent from the uploaded source.
+
+No files need to be deleted.
+Version remains 1.0.28.

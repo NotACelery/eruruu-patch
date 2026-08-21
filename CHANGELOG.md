@@ -1,3 +1,37 @@
+# Eruruu Patch 1.0.28 — final migration cleanup / project decoupling
+
+## Argentum composting QoL
+- Added Argentum planting items to NeoForge's standard Composter data map so automated farms have a vanilla-style sink for excess crop stock.
+- Yerba Mate Seed, Tea Seed and Membrillo Seed compost at 30%, matching vanilla seed-tier items.
+- Batata composts at 65%, matching vanilla root-crop/produce-tier items such as Potato.
+- The three seed items are also marked as valid Villager compost inputs.
+- The implementation is data-driven and does not mix into or modify Argentum code.
+
+## Mushroom Bone Meal visual correction
+- Restored the missing visible Bone Meal particles for valid dark/damp mushroom-generation attempts.
+- The guaranteed vanilla Bone Meal effect now targets the clicked Dirt block instead of the empty mushroom spawn position; successful mushroom generation still keeps its additional effect on the spawned mushroom.
+
+Version 1.0.28 completes the cleanup that **1.0.27 left incomplete** after the experimental Farmer/Cutter and Stonecutter Sifting additions were moved into their permanent projects.
+
+## Easy Farmer's Delight sandbox leftovers removed
+- Removed Eruruu's complete legacy Cutter implementation: block, item, BlockEntity, menu, screen, renderers, processing runtime, automation handlers and stored-villager helpers.
+- Removed the remaining `compat/easyfarmers` code for Knife/Axe classification, Cutting Board recipe resolution, Axe actions, output simulation and Cutter log variants.
+- Removed all Cutter Jade code, models, blockstates, item resources, tool-slot texture, tags and localization.
+- Removed the `eruruu_patch:cutter` registry aliases. The old Cutter existed only in the private sandbox/test world and is no longer carried as a compatibility contract.
+- Removed the historical `EruruuKnife` migration mixin. Eruruu no longer reads, writes or migrates Farmer tool data of any kind.
+- Removed the required Easy Farmer's Delight Compat dependency. Eruruu 1.0.28 has no runtime calls or mixins targeting Easy FD.
+
+## Stonecutter Sifting leftovers removed
+- Removed `StonecutterSiftingTablesMixin` completely. Eruruu no longer changes Soul Sand outputs or any other Stonecutter Sifting table.
+- Removed the old Stonecutter Sifting compile-only dev JAR and the required Stonecutter Sifting dependency.
+- Removed leftover generic sifting localization that had already moved to Stonecutter Sifting.
+- Crimson and Warped Cultures remain normal Eruruu crafting recipes using **9 vanilla Crimson Roots** or **9 vanilla Warped Roots** respectively; they do not depend on sifting.
+
+## Final ownership rule
+- Eruruu Patch now implements only its own OneBlock/QoL mechanics and recipes.
+- Stonecutter Sifting and Easy Farmer's Delight Compat can coexist in the same modpack, but Eruruu neither requires nor modifies them.
+- Historical changelog entries below are intentionally preserved as development history of the sandbox period.
+
 # Eruruu Patch 1.0.27 — migration cleanup compile fix
 
 - `build-dev.bat` now reads `mod_version` from `gradle.properties` instead of hardcoding 1.0.26.
