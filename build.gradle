@@ -13,6 +13,16 @@ base {
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 repositories {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Modrinth'
+                url = 'https://api.modrinth.com/maven'
+            }
+        }
+        filter { includeGroup 'maven.modrinth' }
+    }
+
     maven { url = 'https://maven.blamejared.com' } // JEI
     maven { url = 'https://repo.sleeping.town/' } // EMI
 }
@@ -23,7 +33,9 @@ configurations {
 }
 
 dependencies {
-    // Optional recipe viewer APIs. They are NOT bundled into Eruruu Patch.
+    // Optional viewer APIs. They are compile-only and never bundled into Eruruu Patch.
+    // Jade 15.10.6 for Minecraft 1.21.1 / NeoForge.
+    compileOnly "maven.modrinth:nvQzSEkH:eYz2YBGT"
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
     compileOnly "dev.emi:emi-neoforge:${emi_version}:api"

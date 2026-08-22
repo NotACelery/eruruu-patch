@@ -6,6 +6,8 @@ import dev.maicra.eruruupatch.event.CraftingEvents;
 import dev.maicra.eruruupatch.event.ReinforcedPickaxeEvents;
 import dev.maicra.eruruupatch.network.ModNetworking;
 import dev.maicra.eruruupatch.recipe.ModRecipeSerializers;
+import dev.maicra.eruruupatch.registry.ModBlockEntities;
+import dev.maicra.eruruupatch.registry.ModBlocks;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -16,10 +18,13 @@ public final class EruruuPatch {
     public static final String MOD_ID = "eruruu_patch";
 
     public EruruuPatch(IEventBus modEventBus, ModContainer modContainer) {
+        ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
         ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         modEventBus.addListener(ModNetworking::register);
+        modEventBus.addListener(ModBlockEntities::onRegisterCapabilities);
 
         NeoForge.EVENT_BUS.addListener(BonemealEvents::onBonemeal);
         NeoForge.EVENT_BUS.addListener(BonemealEvents::onServerTickPost);

@@ -4,13 +4,16 @@ import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.recipe.EmiCraftingRecipe;
+import dev.emi.emi.api.recipe.EmiInfoRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.recipe.EmiWorldInteractionRecipe;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.maicra.eruruupatch.EruruuPatch;
 import dev.maicra.eruruupatch.ModItems;
+import dev.maicra.eruruupatch.registry.ModBlocks;
 import dev.maicra.eruruupatch.integration.RecipeViewerData;
 import java.util.List;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 
@@ -25,6 +28,12 @@ public final class EruruuEmiPlugin implements EmiPlugin {
     @Override
     public void register(EmiRegistry registry) {
         registry.addCategory(MOB_DROPS);
+
+        registry.addRecipe(new EmiInfoRecipe(
+                List.of(EmiStack.of(ModBlocks.FILTERED_HOPPER_ITEM.get())),
+                List.of(Component.translatable("eruruu_patch.viewer.filtered_hopper")),
+                ResourceLocation.fromNamespaceAndPath(EruruuPatch.MOD_ID, "info/filtered_hopper")
+        ));
 
         for (var info : RecipeViewerData.WORLD_INTERACTIONS) {
             var output = EmiStack.of(info.output());

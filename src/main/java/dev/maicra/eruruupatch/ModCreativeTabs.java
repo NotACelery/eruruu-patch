@@ -1,5 +1,6 @@
 package dev.maicra.eruruupatch;
 
+import dev.maicra.eruruupatch.registry.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -24,6 +25,7 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.SUGAR_BLOCK.get());
                         output.accept(ModItems.SUGAR_PICKAXE.get());
                         output.accept(ModItems.ENCHANTED_SUGAR_PICKAXE.get());
+                        output.accept(ModBlocks.FILTERED_HOPPER_ITEM.get());
                     })
                     .build());
 

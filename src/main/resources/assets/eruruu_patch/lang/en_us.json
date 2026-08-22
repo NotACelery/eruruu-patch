@@ -40,5 +40,16 @@
   "commands.eruruu_patch.givepick.invalid_pickaxe": "%s cannot be used as a reinforced pickaxe base.",
   "commands.eruruu_patch.givepick.failed": "Could not create %s at level %s.",
   "commands.eruruu_patch.givepick.success": "Gave %s (level %s) to %s.",
-  "gui.eruruu_patch.switch_recipe_result": "Switch Recipe Result"
+  "gui.eruruu_patch.switch_recipe_result": "Switch Recipe Result",
+  "block.eruruu_patch.filtered_hopper": "Filtered Hopper",
+  "container.eruruu_patch.filtered_hopper": "Filtered Hopper",
+  "gui.eruruu_patch.filtered_hopper.filter_slot": "Filter",
+  "gui.eruruu_patch.filtered_hopper.filter_hint": "Insert one item. Only matching Item IDs may enter.",
+  "eruruu_patch.viewer.filtered_hopper": "The Filtered Hopper has five normal storage slots and one dedicated filter slot. Place one item in the filter slot to allow only that Item ID to enter. Damage, names, enchantments and other components do not affect matching. The filter item is not consumed, outgoing items are never restricted, and automation cannot access or change the filter slot.",
+  "jade.eruruu_patch.hopper.filter": "Filter: %s",
+  "jade.eruruu_patch.hopper.filter.none": "Filter: None",
+  "jade.eruruu_patch.hopper.contents": "Contents: %s / %s slots",
+  "jade.eruruu_patch.hopper.contents.empty": "Contents: Empty",
+  "jade.eruruu_patch.hopper.item": "%s ×%s",
+  "jade.eruruu_patch.hopper.more": "+ %s more"
 }

@@ -1,6 +1,7 @@
 package dev.maicra.eruruupatch.integration.jei;
 
 import dev.maicra.eruruupatch.EruruuPatch;
+import dev.maicra.eruruupatch.registry.ModBlocks;
 import dev.maicra.eruruupatch.integration.MobDropInfo;
 import dev.maicra.eruruupatch.integration.RecipeViewerData;
 import dev.maicra.eruruupatch.integration.SpecialCraftingInfo;
@@ -10,6 +11,7 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 /** JEI documentation for Eruruu Patch world interactions, mob drops and special crafting. */
@@ -42,5 +44,9 @@ public final class EruruuJeiPlugin implements IModPlugin {
         registration.addRecipes(WORLD_INTERACTION, RecipeViewerData.WORLD_INTERACTIONS);
         registration.addRecipes(MOB_DROPS, RecipeViewerData.MOB_DROPS);
         registration.addRecipes(SPECIAL_CRAFTING, RecipeViewerData.SPECIAL_CRAFTING);
+        registration.addIngredientInfo(
+                ModBlocks.FILTERED_HOPPER.get(),
+                Component.translatable("eruruu_patch.viewer.filtered_hopper")
+        );
     }
 }

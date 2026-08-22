@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "eruruu_patch:item/filtered_hopper"
+  }
+}

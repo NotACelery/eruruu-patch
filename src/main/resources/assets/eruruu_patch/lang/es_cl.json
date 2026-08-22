@@ -40,5 +40,16 @@
   "commands.eruruu_patch.givepick.invalid_pickaxe": "%s no puede usarse como base para una picota reforzada.",
   "commands.eruruu_patch.givepick.failed": "No se pudo crear %s en nivel %s.",
   "commands.eruruu_patch.givepick.success": "Se entregó %s (nivel %s) a %s.",
-  "gui.eruruu_patch.switch_recipe_result": "Cambiar resultado de receta"
+  "gui.eruruu_patch.switch_recipe_result": "Cambiar resultado de receta",
+  "block.eruruu_patch.filtered_hopper": "Tolva con filtro",
+  "container.eruruu_patch.filtered_hopper": "Tolva con filtro",
+  "gui.eruruu_patch.filtered_hopper.filter_slot": "Filtro",
+  "gui.eruruu_patch.filtered_hopper.filter_hint": "Inserta un objeto. Solo podrán entrar objetos con el mismo ID.",
+  "eruruu_patch.viewer.filtered_hopper": "La Tolva con filtro tiene cinco espacios normales de almacenamiento y un espacio de filtro independiente. Coloca un objeto en el filtro para permitir la entrada únicamente de ese mismo ID de objeto. El daño, nombre, encantamientos y demás componentes no afectan la coincidencia. El objeto del filtro no se consume, la salida nunca se restringe y la automatización no puede acceder ni modificar el filtro.",
+  "jade.eruruu_patch.hopper.filter": "Filtro: %s",
+  "jade.eruruu_patch.hopper.filter.none": "Filtro: Ninguno",
+  "jade.eruruu_patch.hopper.contents": "Contenido: %s / %s espacios",
+  "jade.eruruu_patch.hopper.contents.empty": "Contenido: Vacío",
+  "jade.eruruu_patch.hopper.item": "%s ×%s",
+  "jade.eruruu_patch.hopper.more": "+ %s más"
 }
