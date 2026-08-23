@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "automatic_unlock": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "requirements": [
+    [
+      "automatic_unlock"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eruruu_patch:rabbit_spawn_egg"
+    ]
+  }
+}

@@ -40,7 +40,6 @@
   "commands.eruruu_patch.givepick.invalid_pickaxe": "%s no puede usarse como base para una picota reforzada.",
   "commands.eruruu_patch.givepick.failed": "No se pudo crear %s en nivel %s.",
   "commands.eruruu_patch.givepick.success": "Se entregó %s (nivel %s) a %s.",
-  "gui.eruruu_patch.switch_recipe_result": "Cambiar resultado de receta",
   "block.eruruu_patch.filtered_hopper": "Tolva con filtro",
   "container.eruruu_patch.filtered_hopper": "Tolva con filtro",
   "gui.eruruu_patch.filtered_hopper.filter_slot": "Filtro",
@@ -51,5 +50,6 @@
   "jade.eruruu_patch.hopper.contents": "Contenido: %s / %s espacios",
   "jade.eruruu_patch.hopper.contents.empty": "Contenido: Vacío",
   "jade.eruruu_patch.hopper.item": "%s ×%s",
-  "jade.eruruu_patch.hopper.more": "+ %s más"
+  "jade.eruruu_patch.hopper.more": "+ %s más",
+  "item.eruruu_patch.blank_spawn_egg": "Huevo de aparición vacío"
 }

@@ -1,14 +1,20 @@
-ERURUU PATCH 1.0.28 — ARGENTUM COMPOSTING HOTFIX
+Eruruu Patch 1.1.0 — Blank Spawn Egg Animal Recovery
 
-Apply by extracting this ZIP over the Eruruu Patch project root.
+Release type: feature release / cumulative patch after 1.0.28.
 
-Changes:
-- Argentum Yerba Mate Seed: 30% Composter chance.
-- Argentum Tea Seed: 30% Composter chance.
-- Argentum Membrillo Seed: 30% Composter chance.
-- Argentum Batata: 65% Composter chance.
-- Seed entries allow Villager composting.
-- Restores the previously agreed mushroom Bone Meal particle fix that was absent from the uploaded source.
+Main feature:
+- Adds the reusable Blank Spawn Egg recovery system for NeoBlock RNG/progression locks.
+- 9 Chicken Eggs -> 1 Blank Spawn Egg.
+- Journeyman Farmers guarantee 10 Emeralds -> 1 Blank Spawn Egg (4 uses/restock), replacing Cookies while preserving Melons.
+- Curing/reputation targets 2 Emeralds; this offer has a 2-Emerald minimum before normal demand increases.
+- Blank Spawn Egg recipes produce real vanilla Spawn Eggs for Chicken, Sheep (all 16 colors), Cow, Pig, Horse, Donkey, Rabbit, Wolf, Cat, Bee, Fox, Panda, Turtle, Armadillo, Camel, Strider and Hoglin.
+- README documents every recovery craft and the special Rabbit/Sheep rules.
 
-No files need to be deleted.
-Version remains 1.0.28.
+Cleanup included in this cumulative release:
+- Removes the old experimental crafting-result selector and its networking/mixins/client state.
+- Removes the obsolete Short Grass seed-acquisition recipes that were superseded by the modpack's intended progression.
+- Keeps Eruruu independent from Polymorph and other recipe-conflict tooling.
+
+Version:
+- gradle.properties: 1.1.0
+- build-dev.bat fallback: 1.1.0

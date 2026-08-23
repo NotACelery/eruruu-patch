@@ -38,6 +38,15 @@ public final class ModItems {
             ITEMS.register("warped_culture", () -> new NyliumCultureItem(new Item.Properties(), Blocks.WARPED_NYLIUM));
 
     /**
+     * Neutral crafting core for recovering passive mobs that NeoBlock can make
+     * unobtainable. Nine renewable Chicken Eggs make one blank egg; dedicated
+     * recipes then turn it into a vanilla spawn egg without introducing a
+     * custom spawned entity.
+     */
+    public static final DeferredHolder<Item, Item> BLANK_SPAWN_EGG =
+            ITEMS.register("blank_spawn_egg", () -> new Item(new Item.Properties()));
+
+    /**
      * Early-game moss starter. It deliberately uses vanilla leather armor behavior
      * and a fixed green dyed-color component so it looks like a green leather helmet.
      */

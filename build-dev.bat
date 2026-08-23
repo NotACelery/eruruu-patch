@@ -8,7 +8,7 @@ set "DIST_ROOT=%CD%\.gradle-dist"
 set "DIST_DIR=%DIST_ROOT%\gradle-%GRADLE_VERSION%"
 set "DIST_ZIP=%DIST_ROOT%\gradle-%GRADLE_VERSION%-bin.zip"
 set "JAVA_EXE="
-set "MOD_VERSION=1.0.28"
+set "MOD_VERSION=1.1.0"
 if exist "gradle.properties" (
     for /f "tokens=1,* delims==" %%A in ('findstr /b /c:"mod_version=" "gradle.properties"') do set "MOD_VERSION=%%B"
 )
@@ -28,7 +28,15 @@ if exist "cleanup-migrated-features.bat" (
     call "cleanup-migrated-features.bat"
     if errorlevel 1 (
         echo.
-        echo ERROR: Fallo la limpieza de residuos de Eruruu.
+        echo ERROR: Fallo la limpieza de residuos migrados de Eruruu.
+        goto :failure
+    )
+)
+if exist "cleanup-removed-features.bat" (
+    call "cleanup-removed-features.bat"
+    if errorlevel 1 (
+        echo.
+        echo ERROR: Fallo la limpieza de funcionalidades retiradas de Eruruu.
         goto :failure
     )
 )

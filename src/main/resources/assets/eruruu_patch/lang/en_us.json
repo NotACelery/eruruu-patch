@@ -40,7 +40,6 @@
   "commands.eruruu_patch.givepick.invalid_pickaxe": "%s cannot be used as a reinforced pickaxe base.",
   "commands.eruruu_patch.givepick.failed": "Could not create %s at level %s.",
   "commands.eruruu_patch.givepick.success": "Gave %s (level %s) to %s.",
-  "gui.eruruu_patch.switch_recipe_result": "Switch Recipe Result",
   "block.eruruu_patch.filtered_hopper": "Filtered Hopper",
   "container.eruruu_patch.filtered_hopper": "Filtered Hopper",
   "gui.eruruu_patch.filtered_hopper.filter_slot": "Filter",
@@ -51,5 +50,6 @@
   "jade.eruruu_patch.hopper.contents": "Contents: %s / %s slots",
   "jade.eruruu_patch.hopper.contents.empty": "Contents: Empty",
   "jade.eruruu_patch.hopper.item": "%s ×%s",
-  "jade.eruruu_patch.hopper.more": "+ %s more"
+  "jade.eruruu_patch.hopper.more": "+ %s more",
+  "item.eruruu_patch.blank_spawn_egg": "Blank Spawn Egg"
 }

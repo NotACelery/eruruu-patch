@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "eruruu_patch:sheep_spawn_egg",
+  "pattern": [
+    "WWW",
+    "WBW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:brown_wool"
+    },
+    "B": {
+      "item": "eruruu_patch:blank_spawn_egg"
+    }
+  },
+  "result": {
+    "id": "minecraft:sheep_spawn_egg",
+    "count": 1,
+    "components": {
+      "minecraft:entity_data": {
+        "id": "minecraft:sheep",
+        "Color": 12
+      }
+    }
+  }
+}

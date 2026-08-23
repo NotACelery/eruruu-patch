@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "eruruu_patch:animal_spawn_egg",
+  "pattern": [
+    "III",
+    "IBI",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:wheat"
+    },
+    "B": {
+      "item": "eruruu_patch:blank_spawn_egg"
+    }
+  },
+  "result": {
+    "id": "minecraft:cow_spawn_egg",
+    "count": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "EEE",
+    "EEE",
+    "EEE"
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:egg"
+    }
+  },
+  "result": {
+    "id": "eruruu_patch:blank_spawn_egg",
+    "count": 1
+  }
+}

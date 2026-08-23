@@ -4,10 +4,11 @@ import dev.maicra.eruruupatch.command.EruruuCommands;
 import dev.maicra.eruruupatch.event.BonemealEvents;
 import dev.maicra.eruruupatch.event.CraftingEvents;
 import dev.maicra.eruruupatch.event.ReinforcedPickaxeEvents;
-import dev.maicra.eruruupatch.network.ModNetworking;
+import dev.maicra.eruruupatch.event.VillagerTradeEvents;
 import dev.maicra.eruruupatch.recipe.ModRecipeSerializers;
 import dev.maicra.eruruupatch.registry.ModBlockEntities;
 import dev.maicra.eruruupatch.registry.ModBlocks;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -23,7 +24,6 @@ public final class EruruuPatch {
         ModItems.ITEMS.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
         ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
-        modEventBus.addListener(ModNetworking::register);
         modEventBus.addListener(ModBlockEntities::onRegisterCapabilities);
 
         NeoForge.EVENT_BUS.addListener(BonemealEvents::onBonemeal);
@@ -35,5 +35,6 @@ public final class EruruuPatch {
         NeoForge.EVENT_BUS.addListener(ReinforcedPickaxeEvents::onEnchantmentLevelSet);
         NeoForge.EVENT_BUS.addListener(ReinforcedPickaxeEvents::onItemTooltip);
         NeoForge.EVENT_BUS.addListener(ReinforcedPickaxeEvents::onPlayerTickPost);
+        NeoForge.EVENT_BUS.addListener(EventPriority.HIGHEST, VillagerTradeEvents::onVillagerTrades);
     }
 }

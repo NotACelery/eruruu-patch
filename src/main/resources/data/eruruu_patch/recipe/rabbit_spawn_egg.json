@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "eruruu_patch:animal_spawn_egg",
+  "pattern": [
+    "CCC",
+    "CBC",
+    "CDC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:carrot"
+    },
+    "D": {
+      "item": "minecraft:dandelion"
+    },
+    "B": {
+      "item": "eruruu_patch:blank_spawn_egg"
+    }
+  },
+  "result": {
+    "id": "minecraft:rabbit_spawn_egg",
+    "count": 1
+  }
+}

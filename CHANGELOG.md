@@ -1,14 +1,40 @@
-# Unreleased — Next Wave
+# Eruruu Patch 1.1.0 — Blank Spawn Egg animal recovery
 
-## Generic crafting recipe conflict resolver
-- Added a generic 2x2/3x3 crafting conflict resolver for cases where multiple installed recipes match the same current ingredient grid but produce semantically different results.
-- The selector stores choices by recipe ID, stays server-authoritative, preserves the chosen recipe during repeated crafting while it remains valid, and validates every client request against the live grid.
-- Selected recipes also control crafting remainders/containers; the implementation does not merely swap the visible result stack.
-- The client adds a compact scrollable result selector beside the vanilla output slot for both the personal inventory grid and Crafting Table.
-- The resolver contains no Argentum/Farmer's Delight hardcode and does not depend on Polymorph, JEI or EMI.
+## Blank Spawn Egg animal recovery
+- Added **Blank Spawn Egg**: craft 9 vanilla Chicken Eggs in a full 3x3 Crafting Table grid to obtain one blank egg.
+- Surround a Blank Spawn Egg with 8 Wool blocks of one matching vanilla color to craft a real `minecraft:sheep_spawn_egg`.
+- All 16 vanilla Wool colors are supported. The resulting vanilla Sheep Spawn Egg stores the matching Sheep `Color` in its `minecraft:entity_data`, so using it spawns that exact color instead of a random/default sheep.
+- Mixed Wool colors do not match any recipe.
+- Added **Chicken Spawn Egg** recovery: surround a Blank Spawn Egg with 8 vanilla Wheat Seeds to craft one real `minecraft:chicken_spawn_egg`.
+- Added the rest of the planned anti-RNG-lock animal recovery table. All outputs are real vanilla Spawn Eggs:
+  - Cow: 8 Wheat.
+  - Pig: 8 Carrots.
+  - Horse: 8 Golden Carrots.
+  - Donkey: 8 Hay Bales.
+  - Rabbit: 7 Carrots + 1 Dandelion, avoiding the Pig recipe collision.
+  - Wolf: 8 Bones.
+  - Cat: 8 raw Cod.
+  - Bee: 8 vanilla `#minecraft:flowers` items; mixed flowers are accepted.
+  - Fox: 8 Sweet Berries.
+  - Panda: 8 Bamboo.
+  - Turtle: 8 vanilla Seagrass.
+  - Armadillo: 8 Spider Eyes.
+  - Camel: 8 Cactus.
+  - Strider: 8 Warped Fungus.
+  - Hoglin: 8 Crimson Fungus.
+- Blank Spawn Egg is now the shared base for deliberately selected anti-RNG-lock animal recipes; arbitrary mob Spawn Eggs remain unavailable unless a specific recovery recipe is added.
+- Added a guaranteed **Journeyman Farmer** recovery trade: **10 Emeralds -> 1 Blank Spawn Egg**, 4 uses before restock, replacing only the vanilla **3 Emeralds -> 18 Cookies** listing while preserving the Melon trade.
+- The trade uses a `0.08` reputation price multiplier so a clean cured-villager reputation targets 2 Emeralds. A dedicated MerchantOffer mixin keeps this one trade at a 2-Emerald minimum so additional positive gossip/Hero discounts cannot reduce it to 1; vanilla demand can still raise the price after repeated use.
+
+
+## Crafting cleanup
+- Removed Eruruu's experimental crafting recipe conflict selector completely, including its client widget/state, server resolver, network payload and Crafting Menu/Result Slot mixins.
+- Recipe conflicts are now intentionally delegated to dedicated modpack tooling; Eruruu itself does not require or integrate with Polymorph.
+- Removed the obsolete temporary Short Grass seed-acquisition recipes and their automatic recipe-unlock advancements now that the modpack has an intended progression source.
+- Kept the underlying Argentum composting and villager-plantable compatibility unchanged; only the redundant crafting acquisition path was removed.
 
 ## Composting QoL expansion
-- Completed Argentum composting coverage: all four planting items compost at 30%, while Yerba, Tea, Membrillo and Batata direct harvests compost at 65%.
+- Completed the Argentum composting coverage used by the automation layer, keeping vanilla-style planting-item and harvested-produce probabilities.
 - Added optional Ars Nouveau Magebloom composting: Magebloom Crop at 30% and Magebloom at 65%. Optional item tags keep this compatibility safe when Ars Nouveau is absent.
 
 # Eruruu Patch 1.0.28 — final migration cleanup / project decoupling

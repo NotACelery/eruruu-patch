@@ -21,6 +21,7 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.ENDLESS_CHARCOAL.get());
                         output.accept(ModItems.CRIMSON_CULTURE.get());
                         output.accept(ModItems.WARPED_CULTURE.get());
+                        output.accept(ModItems.BLANK_SPAWN_EGG.get());
                         output.accept(ModItems.MOSS_HELMET.get());
                         output.accept(ModItems.SUGAR_BLOCK.get());
                         output.accept(ModItems.SUGAR_PICKAXE.get());

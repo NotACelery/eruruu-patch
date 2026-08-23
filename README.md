@@ -5,9 +5,9 @@ Small NeoForge 1.21.1 compatibility/QoL patch for **Eruruu's Cult OneBlock**.
 The design goal is to remove OneBlock-specific resource locks without turning the pack into a vending machine: most new acquisition methods require renewable inputs, infrastructure, time, or low-probability processing.
 
 ## Sandbox / migration policy
-Eruruu Patch remains the **integration sandbox for the OneBlock pack**, but version **1.0.28 finishes the cleanup that 1.0.27 left incomplete**.
+Eruruu Patch remains the **integration sandbox for the OneBlock pack**. Version **1.1.0** is the first feature release after the 1.0.28 project-decoupling cleanup and adds the reusable Blank Spawn Egg animal-recovery system.
 
-The rule after 1.0.28 is strict: once an experimental feature has moved into another project, Eruruu removes the implementation completely instead of keeping compatibility hooks or a hidden legacy copy.
+The ownership rule established after 1.0.28 remains strict: once an experimental feature has moved into another project, Eruruu removes the implementation completely instead of keeping compatibility hooks or a hidden legacy copy.
 
 That means Eruruu Patch now contains only its own OneBlock/QoL systems. It no longer calls into, mixes into, aliases ids from, or requires **Stonecutter Sifting** or **Easy Farmer's Delight Compat**.
 
@@ -25,6 +25,98 @@ Crimson and Warped Cultures are entirely native Eruruu mechanics: **9 vanilla Cr
 
 ## Features
 
+### Blank Spawn Egg — NeoBlock animal recovery
+Version 1.1.0 adds a controlled recovery path for passive/utility mobs that can become inaccessible when NeoBlock progression or trader delivery fails. The system is intentionally finite: only the recipes listed below exist, and every result is the **real vanilla Spawn Egg** for that mob.
+
+#### Getting a Blank Spawn Egg
+A Blank Spawn Egg can be obtained in either of two ways:
+
+**Crafting — 9 Chicken Eggs:**
+
+```text
+E E E
+E E E
+E E E
+```
+
+`E = minecraft:egg`  
+Result: `1 eruruu_patch:blank_spawn_egg`
+
+**Farmer trade — guaranteed Journeyman offer:**
+- Every vanilla Farmer gets **10 Emeralds -> 1 Blank Spawn Egg** at Journeyman / level 3.
+- The offer has **4 uses before restock** and replaces only the vanilla Cookie offer; the useful Melon trade remains.
+- Villager reputation/curing applies normally. The intended cured price is **2 Emeralds**, with a 2-Emerald floor for this specific recovery trade. Normal demand may still raise the price temporarily.
+
+#### Standard animal crafting pattern
+Unless a recipe below says otherwise, put the **Blank Spawn Egg in the center** and surround it with 8 copies of the listed ingredient:
+
+```text
+I I I
+I B I
+I I I
+```
+
+`B = eruruu_patch:blank_spawn_egg`  
+`I = the mob-specific ingredient below`
+
+| Result | Surrounding ingredient | Notes |
+| --- | --- | --- |
+| Chicken Spawn Egg | 8 Wheat Seeds | `minecraft:wheat_seeds` |
+| Cow Spawn Egg | 8 Wheat | `minecraft:wheat` |
+| Pig Spawn Egg | 8 Carrots | `minecraft:carrot` |
+| Horse Spawn Egg | 8 Golden Carrots | `minecraft:golden_carrot` |
+| Donkey Spawn Egg | 8 Hay Bales | `minecraft:hay_block` |
+| Wolf Spawn Egg | 8 Bones | `minecraft:bone` |
+| Cat Spawn Egg | 8 raw Cod | `minecraft:cod` |
+| Bee Spawn Egg | 8 Flowers | Uses `#minecraft:flowers`; flower types may be mixed |
+| Fox Spawn Egg | 8 Sweet Berries | `minecraft:sweet_berries` |
+| Panda Spawn Egg | 8 Bamboo | `minecraft:bamboo` |
+| Turtle Spawn Egg | 8 Seagrass | `minecraft:seagrass` |
+| Armadillo Spawn Egg | 8 Spider Eyes | `minecraft:spider_eye` |
+| Camel Spawn Egg | 8 Cactus | `minecraft:cactus` |
+| Strider Spawn Egg | 8 Warped Fungus | `minecraft:warped_fungus` |
+| Hoglin Spawn Egg | 8 Crimson Fungus | `minecraft:crimson_fungus` |
+
+#### Rabbit recipe
+Rabbit is deliberately different from Pig so both recipes remain unambiguous:
+
+```text
+C C C
+C B C
+C D C
+```
+
+`C = minecraft:carrot`  
+`D = minecraft:dandelion`  
+`B = eruruu_patch:blank_spawn_egg`  
+Result: `1 minecraft:rabbit_spawn_egg`
+
+#### Sheep color recipes
+Sheep use the standard ring pattern, but **all 8 Wool blocks must be the same color**. The output is a vanilla `minecraft:sheep_spawn_egg` carrying the matching Sheep `Color` in `minecraft:entity_data`, so the spawned Sheep has that exact color.
+
+Supported variants:
+
+| Wool used | Spawned Sheep color |
+| --- | --- |
+| White Wool | White |
+| Orange Wool | Orange |
+| Magenta Wool | Magenta |
+| Light Blue Wool | Light Blue |
+| Yellow Wool | Yellow |
+| Lime Wool | Lime |
+| Pink Wool | Pink |
+| Gray Wool | Gray |
+| Light Gray Wool | Light Gray |
+| Cyan Wool | Cyan |
+| Purple Wool | Purple |
+| Blue Wool | Blue |
+| Brown Wool | Brown |
+| Green Wool | Green |
+| Red Wool | Red |
+| Black Wool | Black |
+
+Mixed Wool colors do not match a recovery recipe. Arbitrary mob Spawn Eggs remain unavailable unless a specific OneBlock recovery recipe is deliberately added to Eruruu Patch.
+
 ### Renewable / OneBlock-friendly recipes
 - 3 Bamboo (horizontal) -> 3 Paper
 - Cobblestone -> Sand in the Stonecutter (1:1)
@@ -32,8 +124,6 @@ Crimson and Warped Cultures are entirely native Eruruu mechanics: **9 vanilla Cr
 - 1 Coarse Dirt -> 1 Dirt
 - 2 Bone Blocks + 2 Sand in a 2x2 checkerboard -> 4 Soul Sand
 - 2 Cobblestone + 2 raw-meat items in a 2x2 checkerboard -> 4 Netherrack
-- 4 Short Grass (2x2) -> Argentum Yerba Mate Seed
-- 3 Short Grass (horizontal) -> Argentum Tea Seed
 - 9 Short Grass (3x3) -> Fertilizer
 - 8 Sticks around any `#minecraft:saplings` item -> Dead Bush
 - 9 Crimson Roots -> Crimson Culture
@@ -94,21 +184,14 @@ Every valid attempt consumes one Bone Meal. Each attempt has a 10% total success
 - With the Moss Helmet equipped, right-clicking a Moss Block with any Hoe converts it to Dirt and consumes 1 point of Hoe durability.
 
 ### Argentum crop compatibility
-Eruruu Patch extends the vanilla `minecraft:villager_plantable_seeds` item tag with Argentum's Yerba seed, Tea seed, Batata and Membrillo seed. This lets compatible Farmers recognize those four Argentum crops through the normal seed/crop path.
-
-To prevent automated Argentum farms from filling storage with excess crop stock, all four planting items and their direct harvests can be recycled through a normal Composter:
-
-- Yerba Mate Seed, Tea Seed, Membrillo Seed and Batata Seed: 30% compost chance.
-- Yerba, Tea, Membrillo and Batata: 65% compost chance.
+Eruruu Patch keeps lightweight Farmer/Composter compatibility for the Argentum crops that are relevant to its automation layer. Membrillo planting material is recognized through the normal villager seed path, while Batata remains compatible with the crop workflow. Their excess planting/harvest items can be recycled through a normal Composter using vanilla-style seed/produce probabilities.
 
 When Ars Nouveau is installed, Magebloom follows the same crop rule without becoming a required dependency: Magebloom Crop composts at 30% and harvested Magebloom at 65%. Magebloom Fiber is intentionally excluded as a processed product.
 
 This uses NeoForge's standard compostable item data map, so manual composting, hopper-fed Composters and normal Composter behavior remain unchanged.
 
-### Generic crafting recipe conflict resolver
-When two or more installed crafting recipes genuinely match the same current 2x2 or 3x3 grid but produce different results, Eruruu adds a small selector beside the output slot. The player can inspect the matching outputs and choose which recipe should be authoritative.
-
-The selection is stored by recipe ID, validated by the server against the live grid, retained during repeated crafting while still valid, and also controls recipe-specific remainders such as buckets or other containers. The resolver is generic: it does not hardcode particular mod namespaces and JEI/EMI/Recipe Book can continue filling the vanilla crafting grid normally.
+### Crafting recipe conflicts
+Eruruu Patch no longer implements its experimental crafting-result selector. Recipe conflicts are intentionally left to dedicated modpack tooling instead of being intercepted by Eruruu's crafting menus or result slots. This keeps Eruruu independent from whichever recipe-conflict mod the pack chooses to use.
 
 ### Recipe viewers / recipe discovery
 - Normal Eruruu crafting/stonecutting recipes are real recipe JSONs, so the vanilla Recipe Book, JEI and EMI discover them normally.
@@ -130,7 +213,7 @@ The first migration landed in 1.0.27. Version **1.0.28 completes the cleanup** b
 
 JEI and EMI integrations are optional at runtime. **Ars Nouveau is also optional**; when present, Eruruu only adds the Magebloom composting QoL described above.
 
-**Stonecutter Sifting and Easy Farmer's Delight Compat are not dependencies of Eruruu Patch.** They can be installed alongside it in the OneBlock pack, but 1.0.28 contains no runtime integration with either project.
+**Stonecutter Sifting and Easy Farmer's Delight Compat are not dependencies of Eruruu Patch.** They can be installed alongside it in the OneBlock pack, but 1.1.0 contains no runtime integration with either project.
 
 ## Development
 This project targets Java 21 and ModDevGradle. The supplied Gradle files are the canonical source build. The distributed JAR is also compile-checked directly against NeoForge 1.21.1 classes and the exact JEI/EMI API JARs used by the Eruruu OneBlock instance.
@@ -169,7 +252,7 @@ The item argument uses the normal registry, so modded pickaxe IDs autocomplete n
 
 ## Historical sandbox archive
 
-The sections below document how features were developed and validated inside Eruruu before migration. They are retained as project history and **do not describe active Farmer/Cutter or generic Stonecutter gameplay in Eruruu Patch 1.0.28**.
+The sections below document how features were developed and validated inside Eruruu before migration. They are retained as project history and **do not describe active Farmer/Cutter or generic Stonecutter gameplay in Eruruu Patch 1.1.0**.
 
 ### Laboratory integrations in 1.0.15
 
