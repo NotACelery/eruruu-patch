@@ -5,7 +5,7 @@ Small NeoForge 1.21.1 compatibility/QoL patch for **Eruruu's Cult OneBlock**.
 The design goal is to remove OneBlock-specific resource locks without turning the pack into a vending machine: most new acquisition methods require renewable inputs, infrastructure, time, or low-probability processing.
 
 ## Sandbox / migration policy
-Eruruu Patch remains the **integration sandbox for the OneBlock pack**. Version **1.1.0** is the first feature release after the 1.0.28 project-decoupling cleanup and adds the reusable Blank Spawn Egg animal-recovery system.
+Eruruu Patch remains the **integration sandbox for the OneBlock pack**. Version **1.2.0** regularizes the charcoal progression with a real Charcoal Block and Dense Charcoal while retaining the 1.1.0 Blank Spawn Egg animal-recovery system.
 
 The ownership rule established after 1.0.28 remains strict: once an experimental feature has moved into another project, Eruruu removes the implementation completely instead of keeping compatibility hooks or a hidden legacy copy.
 
@@ -26,7 +26,7 @@ Crimson and Warped Cultures are entirely native Eruruu mechanics: **9 vanilla Cr
 ## Features
 
 ### Blank Spawn Egg — NeoBlock animal recovery
-Version 1.1.0 adds a controlled recovery path for passive/utility mobs that can become inaccessible when NeoBlock progression or trader delivery fails. The system is intentionally finite: only the recipes listed below exist, and every result is the **real vanilla Spawn Egg** for that mob.
+Version 1.1.0 introduced a controlled recovery path for passive/utility mobs that can become inaccessible when NeoBlock progression or trader delivery fails. The system is intentionally finite: only the recipes listed below exist, and every result is the **real vanilla Spawn Egg** for that mob.
 
 #### Getting a Blank Spawn Egg
 A Blank Spawn Egg can be obtained in either of two ways:
@@ -128,7 +128,9 @@ Mixed Wool colors do not match a recovery recipe. Arbitrary mob Spawn Eggs remai
 - 8 Sticks around any `#minecraft:saplings` item -> Dead Bush
 - 9 Crimson Roots -> Crimson Culture
 - 9 Warped Roots -> Warped Culture
-- 64 Charcoal in a Crafting Table -> Endless Charcoal
+- 9 Charcoal (3x3) -> Charcoal Block
+- 1 Charcoal Block -> 9 Charcoal
+- 9 Charcoal Blocks (3x3) -> Dense Charcoal
 - 5 Moss Blocks in a helmet pattern -> Moss Helmet
 - 4 Sugar in a 2x2 -> Sugar Block
 - 8 Sugar around a Wooden Pickaxe -> Sugar Rush Pickaxe (Haste I food)
@@ -158,11 +160,15 @@ Every valid attempt consumes one Bone Meal. Each attempt has a 10% total success
 - Short Grass that remains after that Wild Crop pass has an independent 3% chance to become a vanilla Sweet Berry Bush.
 - Bone Meal on Dirt under one block of shallow source water keeps vanilla aquatic growth. Every newly generated Seagrass candidate in the spread independently has an 8% chance to become Wild Rice.
 
-### Endless Charcoal
-- Non-stackable custom fuel using the vanilla Charcoal appearance with permanent enchantment glint.
-- Furnace burn time: `Integer.MAX_VALUE` = 2,147,483,647 ticks (~3.4 years of continuously loaded furnace time).
-- The item is consumed when the furnace ignites, leaving the fuel slot free while the stored burn time continues counting down.
-- The 64-charcoal cost is enforced by a special crafting recipe and documented directly in JEI/EMI.
+### Charcoal Block and Dense Charcoal
+- 9 vanilla Charcoal craft into 1 placeable Charcoal Block; 1 Charcoal Block can be unpacked back into 9 Charcoal.
+- Charcoal Block uses the vanilla Block of Coal geometry with a warmer charcoal-brown palette and is mined with a Pickaxe.
+- Charcoal Block burns for `16,000` ticks. Vanilla Charcoal burns for `1,600`, so this reproduces the same 10x block-to-single-item burn-time ratio used by vanilla Coal Blocks.
+- 9 Charcoal Blocks craft into 1 non-stackable **Dense Charcoal**, for a total material cost of 81 Charcoal.
+- Dense Charcoal intentionally retains the legacy registry ID `eruruu_patch:endless_charcoal` so existing worlds keep old stacks after upgrading.
+- Dense Charcoal keeps the vanilla Charcoal appearance with permanent enchantment glint.
+- Dense Charcoal furnace burn time remains `Integer.MAX_VALUE` = 2,147,483,647 ticks (~3.4 years of continuously loaded furnace time).
+- The old custom 64-item special recipe and deferred post-craft inventory consumption were removed; all three charcoal conversions are normal recipe JSONs.
 
 ### Fertilizer
 - Custom item using the vanilla Wheat Seeds appearance.
@@ -195,8 +201,8 @@ Eruruu Patch no longer implements its experimental crafting-result selector. Rec
 
 ### Recipe viewers / recipe discovery
 - Normal Eruruu crafting/stonecutting recipes are real recipe JSONs, so the vanilla Recipe Book, JEI and EMI discover them normally.
-- Endless Charcoal uses a special 64-item crafting recipe and is explicitly documented in JEI/EMI.
-- JEI retains Eruruu-owned **World Interaction**, **Mob Drops**, and **Special Crafting** categories; EMI retains native **World Interaction** displays plus its custom **Mob Drops** category.
+- Charcoal Block, Charcoal unpacking and Dense Charcoal are normal crafting recipes and are indexed automatically by the vanilla Recipe Book, JEI and EMI.
+- JEI retains Eruruu-owned **World Interaction** and **Mob Drops** categories; EMI retains native **World Interaction** displays plus its custom **Mob Drops** category.
 #### Migration status
 The first migration landed in 1.0.27. Version **1.0.28 completes the cleanup** by deleting every remaining runtime hook, alias, mixin, devlib and resource that connected Eruruu to the migrated Farmer/Cutter or generic sifting experiments. The companion mods can still be installed in the same modpack, but Eruruu does not depend on or modify them.
 
@@ -213,7 +219,7 @@ The first migration landed in 1.0.27. Version **1.0.28 completes the cleanup** b
 
 JEI and EMI integrations are optional at runtime. **Ars Nouveau is also optional**; when present, Eruruu only adds the Magebloom composting QoL described above.
 
-**Stonecutter Sifting and Easy Farmer's Delight Compat are not dependencies of Eruruu Patch.** They can be installed alongside it in the OneBlock pack, but 1.1.0 contains no runtime integration with either project.
+**Stonecutter Sifting and Easy Farmer's Delight Compat are not dependencies of Eruruu Patch.** They can be installed alongside it in the OneBlock pack, but 1.2.0 contains no runtime integration with either project.
 
 ## Development
 This project targets Java 21 and ModDevGradle. The supplied Gradle files are the canonical source build. The distributed JAR is also compile-checked directly against NeoForge 1.21.1 classes and the exact JEI/EMI API JARs used by the Eruruu OneBlock instance.
@@ -252,7 +258,7 @@ The item argument uses the normal registry, so modded pickaxe IDs autocomplete n
 
 ## Historical sandbox archive
 
-The sections below document how features were developed and validated inside Eruruu before migration. They are retained as project history and **do not describe active Farmer/Cutter or generic Stonecutter gameplay in Eruruu Patch 1.1.0**.
+The sections below document how features were developed and validated inside Eruruu before migration. They are retained as project history and **do not describe active Farmer/Cutter or generic Stonecutter gameplay in Eruruu Patch 1.2.0**.
 
 ### Laboratory integrations in 1.0.15
 

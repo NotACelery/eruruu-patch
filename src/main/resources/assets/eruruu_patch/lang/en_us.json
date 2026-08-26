@@ -13,16 +13,14 @@
   "eruruu_patch.viewer.looting": "Looting %s: %s",
   "eruruu_patch.viewer.killed_by_player": "Requires a player kill",
   "emi.category.eruruu_patch.mob_drops": "Mob Drops",
-  "item.eruruu_patch.endless_charcoal": "Endless Charcoal",
-  "jei.eruruu_patch.special_crafting": "Special Crafting",
-  "eruruu_patch.viewer.endless_charcoal": "Combine 64 Charcoal in a Crafting Table. Burns for 2,147,483,647 ticks.",
+  "item.eruruu_patch.endless_charcoal": "Dense Charcoal",
   "item.eruruu_patch.crimson_culture": "Crimson Culture",
   "item.eruruu_patch.warped_culture": "Warped Culture",
   "eruruu_patch.viewer.mushroom_room": "Use Bone Meal on Dirt in a dark two-block-high room (light 7 or less) with a full ceiling and source water directly above it. Each valid attempt consumes Bone Meal; 10% total chance, split evenly between Brown and Red Mushrooms.",
   "eruruu_patch.viewer.nylium_culture": "Use the culture on Netherrack to convert the block into the matching Nylium.",
   "eruruu_patch.viewer.guaranteed": "Guaranteed",
   "eruruu_patch.viewer.easy_mob_farm": "Compatible with Easy Mob Farm",
-  "fml.menu.mods.info.description.eruruu_patch": "OneBlock compatibility and quality-of-life patch made for Eruruu's Cult. Adds renewable resource routes, Fertilizer, Endless Charcoal, starter mushrooms, Nether cultures, extra mob loot, and JEI/EMI documentation. Includes reinforced AFK pickaxes with additive durability and Sugar Rush foods for long AFK mining sessions.",
+  "fml.menu.mods.info.description.eruruu_patch": "OneBlock compatibility and quality-of-life patch made for Eruruu's Cult. Adds renewable resource routes, Fertilizer, Charcoal Blocks and Dense Charcoal, starter mushrooms, Nether cultures, extra mob loot, and JEI/EMI documentation. Includes reinforced AFK pickaxes with additive durability and Sugar Rush foods for long AFK mining sessions.",
   "item.eruruu_patch.moss_helmet": "Moss Helmet",
   "eruruu_patch.viewer.moss_helmet": "Wear the Moss Helmet to unlock moss interactions: Bone Meal on Cobblestone converts it to Moss and triggers the normal Moss bonemeal spread; use a Hoe on a Moss Block to turn it into Dirt.",
   "item.eruruu_patch.reinforced_pickaxe_name": "THE %s",
@@ -51,5 +49,6 @@
   "jade.eruruu_patch.hopper.contents.empty": "Contents: Empty",
   "jade.eruruu_patch.hopper.item": "%s ×%s",
   "jade.eruruu_patch.hopper.more": "+ %s more",
-  "item.eruruu_patch.blank_spawn_egg": "Blank Spawn Egg"
+  "item.eruruu_patch.blank_spawn_egg": "Blank Spawn Egg",
+  "block.eruruu_patch.charcoal_block": "Charcoal Block"
 }

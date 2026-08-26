@@ -2,10 +2,8 @@ package dev.maicra.eruruupatch;
 
 import dev.maicra.eruruupatch.command.EruruuCommands;
 import dev.maicra.eruruupatch.event.BonemealEvents;
-import dev.maicra.eruruupatch.event.CraftingEvents;
 import dev.maicra.eruruupatch.event.ReinforcedPickaxeEvents;
 import dev.maicra.eruruupatch.event.VillagerTradeEvents;
-import dev.maicra.eruruupatch.recipe.ModRecipeSerializers;
 import dev.maicra.eruruupatch.registry.ModBlockEntities;
 import dev.maicra.eruruupatch.registry.ModBlocks;
 import net.neoforged.bus.api.EventPriority;
@@ -23,13 +21,10 @@ public final class EruruuPatch {
         ModBlockEntities.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModCreativeTabs.CREATIVE_TABS.register(modEventBus);
-        ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         modEventBus.addListener(ModBlockEntities::onRegisterCapabilities);
 
         NeoForge.EVENT_BUS.addListener(BonemealEvents::onBonemeal);
         NeoForge.EVENT_BUS.addListener(BonemealEvents::onServerTickPost);
-        NeoForge.EVENT_BUS.addListener(CraftingEvents::onItemCrafted);
-        NeoForge.EVENT_BUS.addListener(CraftingEvents::onServerTickPost);
         NeoForge.EVENT_BUS.addListener(EruruuCommands::onRegisterCommands);
         NeoForge.EVENT_BUS.addListener(ReinforcedPickaxeEvents::onAnvilUpdate);
         NeoForge.EVENT_BUS.addListener(ReinforcedPickaxeEvents::onEnchantmentLevelSet);

@@ -18,6 +18,7 @@ public final class ModCreativeTabs {
                     .icon(() -> new ItemStack(ModItems.ERURUU_ICON.get()))
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.FERTILIZER.get());
+                        output.accept(ModBlocks.CHARCOAL_BLOCK_ITEM.get());
                         output.accept(ModItems.ENDLESS_CHARCOAL.get());
                         output.accept(ModItems.CRIMSON_CULTURE.get());
                         output.accept(ModItems.WARPED_CULTURE.get());

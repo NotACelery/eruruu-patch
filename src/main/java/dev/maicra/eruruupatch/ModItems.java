@@ -1,6 +1,6 @@
 package dev.maicra.eruruupatch;
 
-import dev.maicra.eruruupatch.item.EndlessCharcoalItem;
+import dev.maicra.eruruupatch.item.DenseCharcoalItem;
 import dev.maicra.eruruupatch.item.FertilizerItem;
 import dev.maicra.eruruupatch.item.NyliumCultureItem;
 import java.util.List;
@@ -29,7 +29,7 @@ public final class ModItems {
             ITEMS.register("fertilizer", () -> new FertilizerItem(new Item.Properties()));
 
     public static final DeferredHolder<Item, Item> ENDLESS_CHARCOAL =
-            ITEMS.register("endless_charcoal", () -> new EndlessCharcoalItem(new Item.Properties()));
+            ITEMS.register("endless_charcoal", () -> new DenseCharcoalItem(new Item.Properties()));
 
     public static final DeferredHolder<Item, Item> CRIMSON_CULTURE =
             ITEMS.register("crimson_culture", () -> new NyliumCultureItem(new Item.Properties(), Blocks.CRIMSON_NYLIUM));

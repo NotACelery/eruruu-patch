@@ -13,16 +13,14 @@
   "eruruu_patch.viewer.looting": "Botín %s: %s",
   "eruruu_patch.viewer.killed_by_player": "Requiere muerte causada por jugador",
   "emi.category.eruruu_patch.mob_drops": "Botín de criaturas",
-  "item.eruruu_patch.endless_charcoal": "Carbón Inagotable",
-  "jei.eruruu_patch.special_crafting": "Fabricación especial",
-  "eruruu_patch.viewer.endless_charcoal": "Combina 64 de carbón vegetal en una Mesa de crafteo. Arde durante 2.147.483.647 ticks.",
+  "item.eruruu_patch.endless_charcoal": "Carbón vegetal denso",
   "item.eruruu_patch.crimson_culture": "Cultivo carmesí",
   "item.eruruu_patch.warped_culture": "Cultivo distorsionado",
   "eruruu_patch.viewer.mushroom_room": "Usa polvo de hueso sobre Tierra en una sala oscura de dos bloques de alto (luz 7 o menos), con techo sólido y agua fuente directamente encima. Cada intento válido consume polvo de hueso; 10% total, repartido entre champiñón marrón y rojo.",
   "eruruu_patch.viewer.nylium_culture": "Usa el cultivo sobre Netherrack para convertir el bloque en el Nylium correspondiente.",
   "eruruu_patch.viewer.guaranteed": "Garantizado",
   "eruruu_patch.viewer.easy_mob_farm": "Compatible con Easy Mob Farm",
-  "fml.menu.mods.info.description.eruruu_patch": "Parche de compatibilidad y calidad de vida para OneBlock, hecho para Eruruu's Cult. Agrega rutas renovables para recursos, Fertilizante, Carbón Inagotable, hongos iniciales, cultivos del Nether, botín extra de mobs y documentación en JEI/EMI. Incluye picotas reforzadas con límite y alimentos de azúcar para sesiones largas de minería AFK.",
+  "fml.menu.mods.info.description.eruruu_patch": "Parche de compatibilidad y calidad de vida para OneBlock, hecho para Eruruu's Cult. Agrega rutas renovables para recursos, Fertilizante, Bloque de carbón vegetal y Carbón vegetal denso, hongos iniciales, cultivos del Nether, botín extra de mobs y documentación en JEI/EMI. Incluye picotas reforzadas con límite y alimentos de azúcar para sesiones largas de minería AFK.",
   "item.eruruu_patch.moss_helmet": "Casco de musgo",
   "eruruu_patch.viewer.moss_helmet": "Equipa el Casco de musgo para desbloquear interacciones de musgo: el polvo de hueso sobre adoquín lo convierte en musgo y ejecuta la expansión normal del musgo; usa una azada sobre un bloque de musgo para convertirlo en tierra.",
   "item.eruruu_patch.reinforced_pickaxe_name": "LA %s",
@@ -51,5 +49,6 @@
   "jade.eruruu_patch.hopper.contents.empty": "Contenido: Vacío",
   "jade.eruruu_patch.hopper.item": "%s ×%s",
   "jade.eruruu_patch.hopper.more": "+ %s más",
-  "item.eruruu_patch.blank_spawn_egg": "Huevo de aparición vacío"
+  "item.eruruu_patch.blank_spawn_egg": "Huevo de aparición vacío",
+  "block.eruruu_patch.charcoal_block": "Bloque de carbón vegetal"
 }

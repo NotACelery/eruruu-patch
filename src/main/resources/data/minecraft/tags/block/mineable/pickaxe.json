@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "eruruu_patch:charcoal_block",
     "eruruu_patch:filtered_hopper"
   ]
 }

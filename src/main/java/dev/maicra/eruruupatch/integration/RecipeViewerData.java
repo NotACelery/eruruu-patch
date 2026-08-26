@@ -95,14 +95,6 @@ public final class RecipeViewerData {
             )
     );
 
-    public static final List<SpecialCraftingInfo> SPECIAL_CRAFTING = List.of(
-            new SpecialCraftingInfo(
-                    id("endless_charcoal"),
-                    new ItemStack(Items.CHARCOAL, 64),
-                    new ItemStack(ModItems.ENDLESS_CHARCOAL.get()),
-                    Component.translatable("eruruu_patch.viewer.endless_charcoal")
-            )
-    );
 
     public static final List<MobDropInfo> MOB_DROPS = List.of(
             new MobDropInfo(

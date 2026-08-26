@@ -3,7 +3,6 @@ package dev.maicra.eruruupatch.integration.emi;
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
-import dev.emi.emi.api.recipe.EmiCraftingRecipe;
 import dev.emi.emi.api.recipe.EmiInfoRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.recipe.EmiWorldInteractionRecipe;
@@ -15,9 +14,8 @@ import dev.maicra.eruruupatch.integration.RecipeViewerData;
 import java.util.List;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
 
-/** EMI documentation for Eruruu Patch world interactions, mob drops and special crafting. */
+/** EMI documentation for Eruruu Patch world interactions and mob drops. */
 @EmiEntrypoint
 public final class EruruuEmiPlugin implements EmiPlugin {
     public static final EmiRecipeCategory MOB_DROPS = new EmiRecipeCategory(
@@ -49,14 +47,6 @@ public final class EruruuEmiPlugin implements EmiPlugin {
                     .build());
         }
 
-        for (var ignored : RecipeViewerData.SPECIAL_CRAFTING) {
-            registry.addRecipe(new EmiCraftingRecipe(
-                    List.of(EmiStack.of(Items.CHARCOAL, 64)),
-                    EmiStack.of(ModItems.ENDLESS_CHARCOAL.get()),
-                    ResourceLocation.fromNamespaceAndPath(EruruuPatch.MOD_ID, "/crafting/endless_charcoal"),
-                    true
-            ));
-        }
 
         for (var info : RecipeViewerData.MOB_DROPS) {
             registry.addRecipe(new MobDropEmiRecipe(info));

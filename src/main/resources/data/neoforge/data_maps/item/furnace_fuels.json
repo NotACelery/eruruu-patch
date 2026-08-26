@@ -1,5 +1,8 @@
 {
   "values": {
+    "eruruu_patch:charcoal_block": {
+      "burn_time": 16000
+    },
     "eruruu_patch:endless_charcoal": {
       "burn_time": 2147483647
     }

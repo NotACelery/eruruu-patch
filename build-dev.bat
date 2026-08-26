@@ -8,7 +8,7 @@ set "DIST_ROOT=%CD%\.gradle-dist"
 set "DIST_DIR=%DIST_ROOT%\gradle-%GRADLE_VERSION%"
 set "DIST_ZIP=%DIST_ROOT%\gradle-%GRADLE_VERSION%-bin.zip"
 set "JAVA_EXE="
-set "MOD_VERSION=1.1.0"
+set "MOD_VERSION=1.2.0"
 if exist "gradle.properties" (
     for /f "tokens=1,* delims==" %%A in ('findstr /b /c:"mod_version=" "gradle.properties"') do set "MOD_VERSION=%%B"
 )

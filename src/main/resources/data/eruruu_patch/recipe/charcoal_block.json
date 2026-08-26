@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
+  "category": "building",
   "pattern": [
     "CCC",
     "CCC",
@@ -8,11 +8,11 @@
   ],
   "key": {
     "C": {
-      "item": "eruruu_patch:charcoal_block"
+      "item": "minecraft:charcoal"
     }
   },
   "result": {
-    "id": "eruruu_patch:endless_charcoal",
+    "id": "eruruu_patch:charcoal_block",
     "count": 1
   }
 }

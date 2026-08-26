@@ -1,3 +1,17 @@
+# Eruruu Patch 1.2.0 — Charcoal progression cleanup
+
+## Charcoal Block
+- Added a real placeable **Charcoal Block** crafted from 9 vanilla Charcoal and reversible back into 9 Charcoal.
+- Charcoal Block copies the physical behavior of vanilla Block of Coal, uses a dedicated warmer charcoal-brown texture, drops itself and is mineable with a Pickaxe.
+- Charcoal Block burns for **16,000 ticks**, matching the same 10x block-to-single-item burn-time ratio used by vanilla Block of Coal compared with Coal/Charcoal.
+
+## Dense Charcoal
+- Reworked the old Endless Charcoal progression into **9 Charcoal Blocks -> 1 Dense Charcoal** (81 Charcoal total).
+- Dense Charcoal keeps the existing `eruruu_patch:endless_charcoal` registry ID for save compatibility, but its user-facing name is now Dense Charcoal.
+- Dense Charcoal remains non-stackable, keeps its permanent glint and retains the `2,147,483,647` tick fuel duration.
+- Removed the old custom 64-charcoal recipe serializer and the deferred post-craft grid/inventory consumption queue.
+- Removed the obsolete JEI/EMI Special Crafting representation. The new Charcoal Block packing/unpacking and Dense Charcoal recipes are normal recipe JSONs and are discovered natively.
+
 # Eruruu Patch 1.1.0 — Blank Spawn Egg animal recovery
 
 ## Blank Spawn Egg animal recovery
