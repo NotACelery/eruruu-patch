@@ -5,17 +5,26 @@ import dev.maicra.eruruupatch.integration.MobDropInfo;
 import dev.maicra.eruruupatch.integration.RecipeViewerData;
 import dev.maicra.eruruupatch.integration.WorldInteractionInfo;
 import dev.maicra.eruruupatch.registry.ModBlocks;
+import java.util.Set;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-/** JEI documentation for Eruruu Patch world interactions and mob drops. */
+/** JEI documentation for Eruruu Patch world interactions, mob drops and recipe fallbacks. */
 @JeiPlugin
 public final class EruruuJeiPlugin implements IModPlugin {
+    private static final Set<String> CHARCOAL_RECIPE_PATHS = Set.of(
+            "charcoal_block",
+            "charcoal_from_charcoal_block",
+            "endless_charcoal"
+    );
+
     public static final RecipeType<WorldInteractionInfo> WORLD_INTERACTION =
             RecipeType.create(EruruuPatch.MOD_ID, "world_interaction", WorldInteractionInfo.class);
     public static final RecipeType<MobDropInfo> MOB_DROPS =
@@ -43,5 +52,24 @@ public final class EruruuJeiPlugin implements IModPlugin {
                 ModBlocks.FILTERED_HOPPER.get(),
                 Component.translatable("eruruu_patch.viewer.filtered_hopper")
         );
+
+        // JEI normally discovers standard crafting JSONs itself. Keep a direct
+        // registration for the 1.2.0 charcoal chain because these recipes were
+        // observed missing from the viewer in the pack even though Minecraft
+        // loaded and crafted them correctly. The RecipeManager remains the only
+        // gameplay source of truth; this merely republishes the real holders.
+        var level = Minecraft.getInstance().level;
+        if (level != null) {
+            var charcoalRecipes = level.getRecipeManager()
+                    .getAllRecipesFor(net.minecraft.world.item.crafting.RecipeType.CRAFTING)
+                    .stream()
+                    .filter(holder -> holder.id().getNamespace().equals(EruruuPatch.MOD_ID))
+                    .filter(holder -> CHARCOAL_RECIPE_PATHS.contains(holder.id().getPath()))
+                    .toList();
+
+            if (!charcoalRecipes.isEmpty()) {
+                registration.addRecipes(RecipeTypes.CRAFTING, charcoalRecipes);
+            }
+        }
     }
 }

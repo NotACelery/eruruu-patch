@@ -3,19 +3,22 @@ package dev.maicra.eruruupatch.integration.emi;
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
+import dev.emi.emi.api.recipe.EmiCraftingRecipe;
 import dev.emi.emi.api.recipe.EmiInfoRecipe;
 import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.recipe.EmiWorldInteractionRecipe;
+import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 import dev.maicra.eruruupatch.EruruuPatch;
 import dev.maicra.eruruupatch.ModItems;
-import dev.maicra.eruruupatch.registry.ModBlocks;
 import dev.maicra.eruruupatch.integration.RecipeViewerData;
+import dev.maicra.eruruupatch.registry.ModBlocks;
 import java.util.List;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
 
-/** EMI documentation for Eruruu Patch world interactions and mob drops. */
+/** EMI documentation for Eruruu Patch world interactions, mob drops and recipe fallbacks. */
 @EmiEntrypoint
 public final class EruruuEmiPlugin implements EmiPlugin {
     public static final EmiRecipeCategory MOB_DROPS = new EmiRecipeCategory(
@@ -47,9 +50,57 @@ public final class EruruuEmiPlugin implements EmiPlugin {
                     .build());
         }
 
+        registerCharcoalRecipeFallbacks(registry);
 
         for (var info : RecipeViewerData.MOB_DROPS) {
             registry.addRecipe(new MobDropEmiRecipe(info));
         }
+    }
+
+    private static void registerCharcoalRecipeFallbacks(EmiRegistry registry) {
+        // The real crafting rules are the normal JSON recipes. EMI is explicitly
+        // given viewer equivalents because the 1.2.0 charcoal chain can otherwise
+        // disappear from the recipe index in the pack. Remove only EMI's native
+        // display entries first so each conversion appears exactly once.
+        registry.removeRecipes(id("charcoal_block"));
+        registry.removeRecipes(id("charcoal_from_charcoal_block"));
+        registry.removeRecipes(id("endless_charcoal"));
+
+        registry.addRecipe(new EmiCraftingRecipe(
+                nine(EmiStack.of(Items.CHARCOAL)),
+                EmiStack.of(ModBlocks.CHARCOAL_BLOCK_ITEM.get()),
+                syntheticId("charcoal_block"),
+                false
+        ));
+
+        registry.addRecipe(new EmiCraftingRecipe(
+                List.of(EmiStack.of(ModBlocks.CHARCOAL_BLOCK_ITEM.get())),
+                EmiStack.of(Items.CHARCOAL, 9),
+                syntheticId("charcoal_from_charcoal_block"),
+                true
+        ));
+
+        registry.addRecipe(new EmiCraftingRecipe(
+                nine(EmiStack.of(ModBlocks.CHARCOAL_BLOCK_ITEM.get())),
+                EmiStack.of(ModItems.ENDLESS_CHARCOAL.get()),
+                syntheticId("endless_charcoal"),
+                false
+        ));
+    }
+
+    private static List<EmiIngredient> nine(EmiStack stack) {
+        return List.of(
+                stack.copy(), stack.copy(), stack.copy(),
+                stack.copy(), stack.copy(), stack.copy(),
+                stack.copy(), stack.copy(), stack.copy()
+        );
+    }
+
+    private static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(EruruuPatch.MOD_ID, path);
+    }
+
+    private static ResourceLocation syntheticId(String path) {
+        return ResourceLocation.fromNamespaceAndPath(EruruuPatch.MOD_ID, "/crafting/" + path);
     }
 }
