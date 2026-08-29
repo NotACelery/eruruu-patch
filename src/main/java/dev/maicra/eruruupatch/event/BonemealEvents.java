@@ -23,8 +23,6 @@ import java.util.List;
 import java.util.Queue;
 import java.util.function.Supplier;
 
-
-/** OneBlock-friendly renewable-resource additions owned by Eruruu Patch. */
 public final class BonemealEvents {
     private static final float WILD_REPLACEMENT_CHANCE = 0.08F;
     private static final float MUSHROOM_CHANCE = 0.10F;
@@ -46,11 +44,6 @@ public final class BonemealEvents {
         BlockState clickedState = event.getState();
         BlockPos clickedPos = event.getPos();
 
-        // Moss Helmet interaction: Bone Meal on Stone/Cobblestone behaves like
-        // bonemealing a Moss Block, without requiring the player to place Moss first.
-        // Existing Moss is routed through the same explicit path while the helmet is
-        // equipped so the sandbox behavior is deterministic and does not depend on
-        // event ordering with BoneMealItem.
         if (isWearingMossHelmet(event.getPlayer())
                 && (clickedState.is(Blocks.STONE)
                 || clickedState.is(Blocks.COBBLESTONE)
@@ -108,12 +101,6 @@ public final class BonemealEvents {
         }
     }
 
-
-    /**
-     * Delegate the actual moss patch/vegetation generation to Minecraft's own Moss
-     * block. This preserves vanilla feature placement while Eruruu only supplies the
-     * helmet-specific entry point.
-     */
     private static void performVanillaMossBonemeal(ServerLevel level, BlockPos pos) {
         BlockState state = level.getBlockState(pos);
         if (state.is(Blocks.MOSS_BLOCK) && Blocks.MOSS_BLOCK instanceof BonemealableBlock moss) {
@@ -121,13 +108,6 @@ public final class BonemealEvents {
         }
     }
 
-    /**
-     * Vanilla moss uses minecraft:moss_replaceable, which intentionally does not
-     * include Cobblestone. NeoBlock needs both Stone and Cobblestone renewable, so
-     * the helmet extends the vanilla-shaped patch with a short local propagation
-     * pass. Immediate neighbours are guaranteed; subsequent rings are randomized.
-     * Dirt/other vanilla replaceables are still left entirely to the vanilla feature.
-     */
     private static void spreadHelmetMossToStoneAndCobble(ServerLevel level, BlockPos origin) {
         float[] chances = {1.0F, 0.55F, 0.30F};
         for (float chance : chances) {
@@ -271,11 +251,6 @@ public final class BonemealEvents {
                 && level.isEmptyBlock(waterPos.above());
     }
 
-    /**
-     * A Dirt floor with two blocks of interior air, a solid ceiling, source
-     * water above that ceiling, and local light <= 7. Every valid attempt
-     * consumes Bone Meal; 10% succeeds, split 50/50 brown/red.
-     */
     private static boolean tryDampDarkMushroom(ServerLevel level, BlockPos soilPos, BonemealEvent event) {
         if (!level.getBlockState(soilPos).is(Blocks.DIRT)) {
             return false;
@@ -300,8 +275,6 @@ public final class BonemealEvents {
             event.getStack().shrink(1);
         }
 
-        // The guaranteed Bone Meal feedback belongs on the clicked soil block.
-        // mushroomPos is AIR on failed rolls, which makes the vanilla 1505 effect invisible.
         level.levelEvent(1505, soilPos, 15);
 
         if (level.getRandom().nextFloat() < MUSHROOM_CHANCE) {
@@ -328,7 +301,7 @@ public final class BonemealEvents {
                 };
             }
         } catch (ReflectiveOperationException | LinkageError ignored) {
-            // The required dependency should make this unreachable during normal play.
+
         }
         return () -> Blocks.AIR;
     }

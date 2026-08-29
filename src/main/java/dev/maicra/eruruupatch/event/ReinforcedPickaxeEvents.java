@@ -19,14 +19,6 @@ import net.neoforged.neoforge.event.enchanting.EnchantmentLevelSetEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-/**
- * Implements THE Pick's reinforced-pickaxe progression.
- *
- * <p>The reinforced level is the number of real base pickaxes contained in the
- * tool. A level 10 pick plus a level 5 pick therefore becomes level 15. The
- * historic fusion counter is retained only as backwards-compatible metadata;
- * it no longer participates in progression or limits.</p>
- */
 public final class ReinforcedPickaxeEvents {
     private static final String MARKER = "eruruu_reinforced_pickaxe";
     private static final String UNITS = "eruruu_reinforced_units";
@@ -54,7 +46,6 @@ public final class ReinforcedPickaxeEvents {
         boolean rightPickaxe = !right.isEmpty() && right.getItem() instanceof PickaxeItem;
         boolean rightReinforced = rightPickaxe && isReinforced(right);
 
-        // Reinforced pickaxes keep their translated prefix when renamed.
         if (right.isEmpty()) {
             if (leftReinforced && event.getName() != null) {
                 handleRename(event);
@@ -62,10 +53,8 @@ public final class ReinforcedPickaxeEvents {
             return;
         }
 
-        // Fusion: same conventional pickaxe, both at full durability, neither enchanted.
         if (rightPickaxe && left.getItem() == right.getItem()) {
-            // A blacklist entry only blocks THE Pick fusion/creation. Do not interfere
-            // with vanilla anvil behaviour for two ordinary blacklisted tools.
+
             if (!isEligibleBasePickaxe(left) || !isEligibleBasePickaxe(right)) {
                 if (leftReinforced || rightReinforced) {
                     event.setCanceled(true);
@@ -85,8 +74,6 @@ public final class ReinforcedPickaxeEvents {
                 return;
             }
 
-            // Once a pickaxe is reinforced, another pickaxe cannot be used as a
-            // cheap repair material. Only the original material may repair it.
             if (leftReinforced || rightReinforced) {
                 event.setCanceled(true);
             }
@@ -97,29 +84,21 @@ public final class ReinforcedPickaxeEvents {
             return;
         }
 
-        // Vanilla repair ingredient, but each unit restores only 1/4 of the
-        // ORIGINAL pickaxe durability, not 1/4 of the enlarged durability.
         if (left.getItem().isValidRepairItem(left, right)) {
             handleMaterialRepair(event);
             return;
         }
 
-        // ReinforcedEnchantingCompat selectively re-opens enchanted-book operations.
         event.setCanceled(true);
     }
 
     public static void onEnchantmentLevelSet(EnchantmentLevelSetEvent event) {
         if (isReinforced(event.getItem())) {
-            // ReinforcedEnchantingCompat restores the original table level at LOWEST.
-            // Keeping this gate preserves the existing event ordering used by 1.0.15.
+
             event.setEnchantLevel(0);
         }
     }
 
-    /**
-     * Migrates legacy reinforced stacks already sitting in player inventories.
-     * The scan runs once per second and only mutates stacks that are actually stale.
-     */
     public static void onPlayerTickPost(PlayerTickEvent.Post event) {
         if (event.getEntity().level().isClientSide() || event.getEntity().tickCount % 20 != 0) {
             return;
@@ -139,7 +118,6 @@ public final class ReinforcedPickaxeEvents {
         }
     }
 
-    /** Replaces 1.0.15's stored fusion lore with the authoritative UNITS level. */
     public static void onItemTooltip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
         if (!isReinforced(stack)) {
@@ -209,8 +187,6 @@ public final class ReinforcedPickaxeEvents {
             return;
         }
 
-        // Ceil(base durability / 4): four materials repair roughly one normal
-        // pickaxe worth of durability, regardless of THE Pick's reinforced level.
         int repairPerMaterial = Math.max(1, (baseMaxDamage + 3) / 4);
         int materialsNeeded = (damage + repairPerMaterial - 1) / repairPerMaterial;
         int materialsUsed = Math.min(right.getCount(), materialsNeeded);
@@ -227,11 +203,10 @@ public final class ReinforcedPickaxeEvents {
         output.setCount(1);
         output.set(DataComponents.DAMAGE, damage - repaired);
         output.set(DataComponents.REPAIR_COST, 0);
-        writeReinforcedMetadata(output, level, baseName); // Migrates legacy metadata.
+        writeReinforcedMetadata(output, level, baseName);
         applyDisplayName(output, baseName);
         applyLevelLore(output, level);
 
-        // One XP level per four repair materials, rounded up, with no prior-work tax.
         int levelCost = Math.max(1, (materialsUsed + 3) / 4);
 
         event.setOutput(output);
@@ -258,7 +233,7 @@ public final class ReinforcedPickaxeEvents {
         ItemStack output = left.copy();
         output.setCount(1);
         output.set(DataComponents.REPAIR_COST, 0);
-        writeReinforcedMetadata(output, level, baseName); // Migrates legacy metadata.
+        writeReinforcedMetadata(output, level, baseName);
         applyDisplayName(output, baseName);
         applyLevelLore(output, level);
 
@@ -267,7 +242,6 @@ public final class ReinforcedPickaxeEvents {
         event.setMaterialCost(0);
     }
 
-    /** Returns whether this stack is one of Eruruu Patch's reinforced pickaxes. */
     public static boolean isReinforced(ItemStack stack) {
         if (stack == null || stack.isEmpty() || !(stack.getItem() instanceof PickaxeItem)) {
             return false;
@@ -276,10 +250,6 @@ public final class ReinforcedPickaxeEvents {
         return data != null && data.copyTag().getBoolean(MARKER);
     }
 
-    /**
-     * Returns whether the item is a conventional pickaxe eligible to become THE Pick.
-     * Special tools can opt out through #eruruu_patch:reinforcement_blacklist.
-     */
     public static boolean isEligibleBasePickaxe(ItemStack stack) {
         return stack != null
                 && !stack.isEmpty()
@@ -292,11 +262,6 @@ public final class ReinforcedPickaxeEvents {
         return stack != null && !stack.isEmpty() && stack.is(REINFORCEMENT_BLACKLIST);
     }
 
-    /**
-     * THE Pick level is the number of real base pickaxes represented by the stack.
-     * Ordinary pickaxes are level 1. 1.0.15 items migrate from UNITS first, with
-     * LEGACY_FUSIONS used only as a fallback for older items that lack UNITS.
-     */
     public static int getLevel(ItemStack stack) {
         if (!isReinforced(stack)) {
             return 1;
@@ -319,7 +284,6 @@ public final class ReinforcedPickaxeEvents {
             }
         }
 
-        // Last-resort migration: infer units from additive durability if possible.
         int baseMax = baseMaxDamage(stack);
         if (baseMax > 0 && stack.getMaxDamage() >= baseMax * 2L) {
             return clampLevel(Math.max(2, Math.round((float) stack.getMaxDamage() / (float) baseMax)));
@@ -327,10 +291,6 @@ public final class ReinforcedPickaxeEvents {
         return 2;
     }
 
-    /**
-     * Creates a command/dev reinforced pickaxe from a conventional base item.
-     * Level 1 intentionally returns the normal base pickaxe; THE Pick starts at 2.
-     */
     public static ItemStack createPickaxeAtLevel(ItemStack baseStack, int level) {
         if (baseStack == null || baseStack.isEmpty() || level < 1 || level > MAX_LEVEL) {
             return ItemStack.EMPTY;
@@ -351,7 +311,6 @@ public final class ReinforcedPickaxeEvents {
         return buildReinforcedPickaxe(base, level, null);
     }
 
-    /** Shared constructor used by both anvil fusion and the admin/dev command. */
     private static ItemStack buildReinforcedPickaxe(ItemStack template, int level, String baseName) {
         if (!isEligibleBasePickaxe(template) || level < 2 || level > MAX_LEVEL) {
             return ItemStack.EMPTY;
@@ -456,8 +415,6 @@ public final class ReinforcedPickaxeEvents {
         tag.putBoolean(MARKER, true);
         tag.putInt(UNITS, normalizedLevel);
 
-        // Kept only so older Eruruu Patch builds can still interpret a 1.0.16 tool.
-        // 1.0.16 never reads this field for normal progression when UNITS exists.
         tag.putInt(LEGACY_FUSIONS, normalizedLevel - 1);
 
         if (baseName == null || baseName.isBlank()) {
@@ -501,9 +458,7 @@ public final class ReinforcedPickaxeEvents {
     }
 
     private static String stripKnownPrefix(String name) {
-        // These are the prefixes shipped by Eruruu Patch. Stripping them avoids
-        // THE THE Spoon / LA LA Spoon when the anvil text box starts with the
-        // already-prefixed display name.
+
         if (name.regionMatches(true, 0, "THE ", 0, 4)) {
             return name.substring(4).trim();
         }

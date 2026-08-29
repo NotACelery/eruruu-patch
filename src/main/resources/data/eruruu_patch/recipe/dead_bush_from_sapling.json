@@ -1,10 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "pattern": ["SSS", "SXS", "SSS"],
+  "pattern": [
+    "SSS",
+    "SXS",
+    "SSS"
+  ],
   "key": {
-    "S": { "item": "minecraft:stick" },
-    "X": { "tag": "minecraft:saplings" }
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "tag": "minecraft:saplings"
+    }
   },
   "result": {
     "id": "minecraft:dead_bush",

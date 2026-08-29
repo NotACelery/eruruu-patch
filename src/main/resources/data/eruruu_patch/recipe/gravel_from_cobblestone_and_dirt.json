@@ -1,10 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "pattern": ["CD", "DC"],
+  "pattern": [
+    "CD",
+    "DC"
+  ],
   "key": {
-    "C": { "item": "minecraft:cobblestone" },
-    "D": { "item": "minecraft:dirt" }
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
+    "D": {
+      "item": "minecraft:dirt"
+    }
   },
   "result": {
     "id": "minecraft:gravel",

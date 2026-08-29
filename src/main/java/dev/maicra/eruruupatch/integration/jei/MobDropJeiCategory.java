@@ -54,19 +54,71 @@ public final class MobDropJeiCategory implements IRecipeCategory<MobDropInfo> {
     }
 
     @Override
-    public void draw(MobDropInfo recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY) {
+    public void draw(
+            MobDropInfo recipe,
+            IRecipeSlotsView recipeSlotsView,
+            GuiGraphics graphics,
+            double mouseX,
+            double mouseY) {
         var font = Minecraft.getInstance().font;
         graphics.drawString(font, "→", 71, 13, 0x404040, false);
 
-        graphics.drawString(font, Component.translatable("eruruu_patch.viewer.base", RecipeViewerData.percent(recipe.chanceAtLooting(0))), 8, 33, 0x404040, false);
-        graphics.drawString(font, Component.translatable("eruruu_patch.viewer.looting", "I", RecipeViewerData.percent(recipe.chanceAtLooting(1))), 8, 43, 0x555555, false);
-        graphics.drawString(font, Component.translatable("eruruu_patch.viewer.looting", "II", RecipeViewerData.percent(recipe.chanceAtLooting(2))), 8, 53, 0x555555, false);
-        graphics.drawString(font, Component.translatable("eruruu_patch.viewer.looting", "III", RecipeViewerData.percent(recipe.chanceAtLooting(3))), 8, 63, 0x555555, false);
+        graphics.drawString(
+                font,
+                Component.translatable(
+                        "eruruu_patch.viewer.base",
+                        RecipeViewerData.percent(recipe.chanceAtLooting(0))),
+                8,
+                33,
+                0x404040,
+                false);
+        graphics.drawString(
+                font,
+                Component.translatable(
+                        "eruruu_patch.viewer.looting",
+                        "I",
+                        RecipeViewerData.percent(recipe.chanceAtLooting(1))),
+                8,
+                43,
+                0x555555,
+                false);
+        graphics.drawString(
+                font,
+                Component.translatable(
+                        "eruruu_patch.viewer.looting",
+                        "II",
+                        RecipeViewerData.percent(recipe.chanceAtLooting(2))),
+                8,
+                53,
+                0x555555,
+                false);
+        graphics.drawString(
+                font,
+                Component.translatable(
+                        "eruruu_patch.viewer.looting",
+                        "III",
+                        RecipeViewerData.percent(recipe.chanceAtLooting(3))),
+                8,
+                63,
+                0x555555,
+                false);
         if (recipe.requiresPlayerKill()) {
-            graphics.drawString(font, Component.translatable("eruruu_patch.viewer.killed_by_player"), 82, 34, 0x777777, false);
+            graphics.drawString(
+                    font,
+                    Component.translatable("eruruu_patch.viewer.killed_by_player"),
+                    82,
+                    34,
+                    0x777777,
+                    false);
         }
         if (recipe.easyMobFarmCompatible()) {
-            graphics.drawString(font, Component.translatable("eruruu_patch.viewer.easy_mob_farm"), 82, 46, 0x777777, false);
+            graphics.drawString(
+                    font,
+                    Component.translatable("eruruu_patch.viewer.easy_mob_farm"),
+                    82,
+                    46,
+                    0x777777,
+                    false);
         }
     }
 }

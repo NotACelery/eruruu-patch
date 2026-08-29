@@ -15,7 +15,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PickaxeItem;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
-/** Administrative/development commands for Eruruu Patch. */
 public final class EruruuCommands {
     private EruruuCommands() {
     }
@@ -30,7 +29,9 @@ public final class EruruuCommands {
                                 .then(Commands.argument("pickaxe", ItemArgument.item(buildContext))
                                         .then(Commands.argument(
                                                         "level",
-                                                        IntegerArgumentType.integer(1, ReinforcedPickaxeEvents.MAX_LEVEL)
+                                                        IntegerArgumentType.integer(
+                                                                1,
+                                                                ReinforcedPickaxeEvents.MAX_LEVEL)
                                                 )
                                                 .executes(context -> giveToSelf(context))
                                                 .then(Commands.argument("player", EntityArgument.player())

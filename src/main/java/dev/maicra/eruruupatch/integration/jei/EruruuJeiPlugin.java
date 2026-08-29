@@ -16,7 +16,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-/** JEI documentation for Eruruu Patch world interactions, mob drops and recipe fallbacks. */
 @JeiPlugin
 public final class EruruuJeiPlugin implements IModPlugin {
     private static final Set<String> CHARCOAL_RECIPE_PATHS = Set.of(
@@ -53,11 +52,6 @@ public final class EruruuJeiPlugin implements IModPlugin {
                 Component.translatable("eruruu_patch.viewer.filtered_hopper")
         );
 
-        // JEI normally discovers standard crafting JSONs itself. Keep a direct
-        // registration for the 1.2.0 charcoal chain because these recipes were
-        // observed missing from the viewer in the pack even though Minecraft
-        // loaded and crafted them correctly. The RecipeManager remains the only
-        // gameplay source of truth; this merely republishes the real holders.
         var level = Minecraft.getInstance().level;
         if (level != null) {
             var charcoalRecipes = level.getRecipeManager()

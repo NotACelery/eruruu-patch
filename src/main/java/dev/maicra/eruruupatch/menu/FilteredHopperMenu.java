@@ -29,7 +29,12 @@ public final class FilteredHopperMenu extends AbstractContainerMenu {
         this(id, inventory, hopper.getBlockPos(), hopper, hopper.getFilterContainer());
     }
 
-    private FilteredHopperMenu(int id, Inventory inventory, BlockPos pos, Container storage, Container filterContainer) {
+    private FilteredHopperMenu(
+            int id,
+            Inventory inventory,
+            BlockPos pos,
+            Container storage,
+            Container filterContainer) {
         super(ModMenus.FILTERED_HOPPER, id);
         this.blockPos = pos;
         this.storage = storage;
@@ -74,7 +79,7 @@ public final class FilteredHopperMenu extends AbstractContainerMenu {
         if (index < PLAYER_START) {
             if (!moveItemStackTo(moving, PLAYER_START, PLAYER_END, true)) return ItemStack.EMPTY;
         } else {
-            // Shift-click never configures the filter. It is deliberately a direct-click-only slot.
+
             if (!accepts(moving) || !moveItemStackTo(moving, STORAGE_START, STORAGE_END, false)) {
                 return ItemStack.EMPTY;
             }

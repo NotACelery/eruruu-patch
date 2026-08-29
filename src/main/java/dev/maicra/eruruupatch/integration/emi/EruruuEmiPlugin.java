@@ -18,7 +18,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 
-/** EMI documentation for Eruruu Patch world interactions, mob drops and recipe fallbacks. */
 @EmiEntrypoint
 public final class EruruuEmiPlugin implements EmiPlugin {
     public static final EmiRecipeCategory MOB_DROPS = new EmiRecipeCategory(
@@ -58,10 +57,7 @@ public final class EruruuEmiPlugin implements EmiPlugin {
     }
 
     private static void registerCharcoalRecipeFallbacks(EmiRegistry registry) {
-        // The real crafting rules are the normal JSON recipes. EMI is explicitly
-        // given viewer equivalents because the 1.2.0 charcoal chain can otherwise
-        // disappear from the recipe index in the pack. Remove only EMI's native
-        // display entries first so each conversion appears exactly once.
+
         registry.removeRecipes(id("charcoal_block"));
         registry.removeRecipes(id("charcoal_from_charcoal_block"));
         registry.removeRecipes(id("endless_charcoal"));

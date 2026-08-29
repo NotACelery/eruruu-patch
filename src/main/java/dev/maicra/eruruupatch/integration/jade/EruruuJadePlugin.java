@@ -26,10 +26,10 @@ import snownee.jade.api.IWailaPlugin;
 import snownee.jade.api.WailaPlugin;
 import snownee.jade.api.config.IPluginConfig;
 
-/** Concise Jade inventory summaries for both vanilla and filtered hoppers. */
 @WailaPlugin("jade")
 public final class EruruuJadePlugin implements IWailaPlugin {
-    private static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(EruruuPatch.MOD_ID, "hopper_summary");
+    private static final ResourceLocation UID =
+            ResourceLocation.fromNamespaceAndPath(EruruuPatch.MOD_ID, "hopper_summary");
     private static final String ROOT = "EruruuHopperSummary";
     private static final String USED = "Used";
     private static final String FILTER = "Filter";
@@ -56,7 +56,11 @@ public final class EruruuJadePlugin implements IWailaPlugin {
         @Override
         public void appendServerData(CompoundTag data, BlockAccessor accessor) {
             if (!(accessor.getBlockEntity() instanceof Container container)) return;
-            CompoundTag summary = buildSummary(container, accessor.getBlockEntity() instanceof FilteredHopperBlockEntity filtered ? filtered : null);
+            CompoundTag summary = buildSummary(
+                    container,
+                    accessor.getBlockEntity() instanceof FilteredHopperBlockEntity filtered
+                            ? filtered
+                            : null);
             data.put(ROOT, summary);
         }
 
@@ -123,7 +127,11 @@ public final class EruruuJadePlugin implements IWailaPlugin {
 
     private static CompoundTag localSummary(BlockAccessor accessor) {
         if (!(accessor.getBlockEntity() instanceof Container container)) return null;
-        return buildSummary(container, accessor.getBlockEntity() instanceof FilteredHopperBlockEntity filtered ? filtered : null);
+        return buildSummary(
+                container,
+                accessor.getBlockEntity() instanceof FilteredHopperBlockEntity filtered
+                        ? filtered
+                        : null);
     }
 
     private static CompoundTag buildSummary(Container container, FilteredHopperBlockEntity filtered) {
@@ -151,7 +159,11 @@ public final class EruruuJadePlugin implements IWailaPlugin {
 
         if (filtered != null) {
             ItemStack filter = filtered.getFilter();
-            summary.putString(FILTER, filter.isEmpty() ? "" : BuiltInRegistries.ITEM.getKey(filter.getItem()).toString());
+            summary.putString(
+                    FILTER,
+                    filter.isEmpty()
+                            ? ""
+                            : BuiltInRegistries.ITEM.getKey(filter.getItem()).toString());
         }
         return summary;
     }

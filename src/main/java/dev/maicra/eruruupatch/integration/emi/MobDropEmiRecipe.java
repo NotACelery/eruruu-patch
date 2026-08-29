@@ -60,10 +60,41 @@ public final class MobDropEmiRecipe implements EmiRecipe {
         widgets.addTexture(EmiTexture.EMPTY_ARROW, 54, 5);
         widgets.addSlot(output, 116, 5).recipeContext(this);
 
-        widgets.addText(Component.translatable("eruruu_patch.viewer.base", RecipeViewerData.percent(info.chanceAtLooting(0))), 8, 29, 0x404040, false);
-        widgets.addText(Component.translatable("eruruu_patch.viewer.looting", "I", RecipeViewerData.percent(info.chanceAtLooting(1))), 8, 39, 0x555555, false);
-        widgets.addText(Component.translatable("eruruu_patch.viewer.looting", "II", RecipeViewerData.percent(info.chanceAtLooting(2))), 8, 49, 0x555555, false);
-        widgets.addText(Component.translatable("eruruu_patch.viewer.looting", "III", RecipeViewerData.percent(info.chanceAtLooting(3))), 8, 59, 0x555555, false);
+        widgets.addText(
+                Component.translatable(
+                        "eruruu_patch.viewer.base",
+                        RecipeViewerData.percent(info.chanceAtLooting(0))),
+                8,
+                29,
+                0x404040,
+                false);
+        widgets.addText(
+                Component.translatable(
+                        "eruruu_patch.viewer.looting",
+                        "I",
+                        RecipeViewerData.percent(info.chanceAtLooting(1))),
+                8,
+                39,
+                0x555555,
+                false);
+        widgets.addText(
+                Component.translatable(
+                        "eruruu_patch.viewer.looting",
+                        "II",
+                        RecipeViewerData.percent(info.chanceAtLooting(2))),
+                8,
+                49,
+                0x555555,
+                false);
+        widgets.addText(
+                Component.translatable(
+                        "eruruu_patch.viewer.looting",
+                        "III",
+                        RecipeViewerData.percent(info.chanceAtLooting(3))),
+                8,
+                59,
+                0x555555,
+                false);
         if (info.requiresPlayerKill()) {
             widgets.addText(Component.translatable("eruruu_patch.viewer.killed_by_player"), 80, 30, 0x777777, false);
         }

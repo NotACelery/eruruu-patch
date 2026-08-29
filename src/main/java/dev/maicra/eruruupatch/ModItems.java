@@ -32,24 +32,16 @@ public final class ModItems {
             ITEMS.register("endless_charcoal", () -> new DenseCharcoalItem(new Item.Properties()));
 
     public static final DeferredHolder<Item, Item> CRIMSON_CULTURE =
-            ITEMS.register("crimson_culture", () -> new NyliumCultureItem(new Item.Properties(), Blocks.CRIMSON_NYLIUM));
+            ITEMS.register(
+                    "crimson_culture",
+                    () -> new NyliumCultureItem(new Item.Properties(), Blocks.CRIMSON_NYLIUM));
 
     public static final DeferredHolder<Item, Item> WARPED_CULTURE =
             ITEMS.register("warped_culture", () -> new NyliumCultureItem(new Item.Properties(), Blocks.WARPED_NYLIUM));
 
-    /**
-     * Neutral crafting core for recovering passive mobs that NeoBlock can make
-     * unobtainable. Nine renewable Chicken Eggs make one blank egg; dedicated
-     * recipes then turn it into a vanilla spawn egg without introducing a
-     * custom spawned entity.
-     */
     public static final DeferredHolder<Item, Item> BLANK_SPAWN_EGG =
             ITEMS.register("blank_spawn_egg", () -> new Item(new Item.Properties()));
 
-    /**
-     * Early-game moss starter. It deliberately uses vanilla leather armor behavior
-     * and a fixed green dyed-color component so it looks like a green leather helmet.
-     */
     public static final DeferredHolder<Item, Item> MOSS_HELMET =
             ITEMS.register("moss_helmet", () -> new ArmorItem(
                     ArmorMaterials.LEATHER,
@@ -60,40 +52,22 @@ public final class ModItems {
                     )
             ));
 
-    /**
-     * A compact crafting ingredient made from four Sugar. It intentionally behaves
-     * as an item rather than a placed block; its item model looks like White Wool.
-     */
     public static final DeferredHolder<Item, Item> SUGAR_BLOCK =
             ITEMS.register("sugar_block", () -> new Item(new Item.Properties()));
 
-    /**
-     * AFK mining food: 2 hunger, 3 saturation and ten minutes of Haste I.
-     */
     public static final DeferredHolder<Item, Item> SUGAR_PICKAXE =
             ITEMS.register("sugar_pickaxe", () -> new Item(hasteFoodProperties(0, false,
                     "tooltip.eruruu_patch.sugar_pickaxe")));
 
-    /**
-     * Expensive AFK mining food: the same nutrition, but ten minutes of Haste II.
-     * The glint is forced so the composite Sugar + Wooden Pickaxe icon visibly
-     * distinguishes the concentrated recipe.
-     */
     public static final DeferredHolder<Item, Item> ENCHANTED_SUGAR_PICKAXE =
             ITEMS.register("enchanted_sugar_pickaxe", () -> new Item(hasteFoodProperties(1, true,
                     "tooltip.eruruu_patch.enchanted_sugar_pickaxe")));
 
-    /**
-     * Purely visual item used by the Eruruu Patch creative tab as its icon.
-     * It intentionally has no recipe and is not listed inside the tab itself.
-     */
     public static final DeferredHolder<Item, Item> ERURUU_ICON =
             ITEMS.register("eruruu_icon", () -> new Item(new Item.Properties().stacksTo(1)));
 
-
     private static Item.Properties hasteFoodProperties(int amplifier, boolean glint, String tooltipKey) {
-        // nutrition=2 restores two hunger points. A 0.75 saturation modifier gives
-        // exactly 3 saturation: 2 * nutrition * modifier = 3.
+
         FoodProperties food = new FoodProperties.Builder()
                 .nutrition(2)
                 .saturationModifier(0.75F)

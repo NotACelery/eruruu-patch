@@ -1,9 +1,15 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "pattern": ["RRR", "RRR", "RRR"],
+  "pattern": [
+    "RRR",
+    "RRR",
+    "RRR"
+  ],
   "key": {
-    "R": { "item": "minecraft:warped_roots" }
+    "R": {
+      "item": "minecraft:warped_roots"
+    }
   },
   "result": {
     "id": "eruruu_patch:warped_culture",

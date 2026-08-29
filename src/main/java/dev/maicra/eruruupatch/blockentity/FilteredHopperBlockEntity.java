@@ -25,12 +25,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 
-/**
- * Hopper storage with one independent, player-managed filter item.
- * The filter is intentionally not part of the five-slot Container so comparators,
- * automation and storage capacity continue to behave exactly like a vanilla hopper.
- */
-public final class FilteredHopperBlockEntity extends RandomizableContainerBlockEntity implements Hopper, WorldlyContainer {
+public final class FilteredHopperBlockEntity
+        extends RandomizableContainerBlockEntity
+        implements Hopper, WorldlyContainer {
     public static final int STORAGE_SIZE = 5;
     public static final int MOVE_ITEM_SPEED = 8;
     private static final int[] STORAGE_SLOTS = {0, 1, 2, 3, 4};
@@ -242,7 +239,12 @@ public final class FilteredHopperBlockEntity extends RandomizableContainerBlockE
         return false;
     }
 
-    public static void entityInside(Level level, BlockPos pos, BlockState state, Entity entity, FilteredHopperBlockEntity hopper) {
+    public static void entityInside(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            Entity entity,
+            FilteredHopperBlockEntity hopper) {
         if (entity instanceof ItemEntity itemEntity
                 && !itemEntity.getItem().isEmpty()
                 && entity.getBoundingBox()

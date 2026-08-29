@@ -95,7 +95,6 @@ public final class RecipeViewerData {
             )
     );
 
-
     public static final List<MobDropInfo> MOB_DROPS = List.of(
             new MobDropInfo(
                     id("zombie_gold"),

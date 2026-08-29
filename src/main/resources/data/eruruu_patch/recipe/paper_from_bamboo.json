@@ -1,9 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "pattern": ["BBB"],
+  "pattern": [
+    "BBB"
+  ],
   "key": {
-    "B": { "item": "minecraft:bamboo" }
+    "B": {
+      "item": "minecraft:bamboo"
+    }
   },
   "result": {
     "id": "minecraft:paper",

@@ -6,7 +6,9 @@
     "M M"
   ],
   "key": {
-    "M": { "item": "minecraft:moss_block" }
+    "M": {
+      "item": "minecraft:moss_block"
+    }
   },
   "result": {
     "id": "eruruu_patch:moss_helmet",

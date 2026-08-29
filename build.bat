@@ -1,7 +1,7 @@
 @echo off
 setlocal EnableExtensions
 cd /d "%~dp0"
-title Eruruu Patch - Compilacion dev
+title Eruruu Patch - Build
 
 set "GRADLE_VERSION=9.2.1"
 set "DIST_ROOT=%CD%\.gradle-dist"
@@ -19,32 +19,6 @@ echo ============================================================
 echo Directorio: %CD%
 echo.
 
-
-rem ------------------------------------------------------------
-rem 0. Limpiar residuos de versiones anteriores si el source fue
-rem    extraido encima de una carpeta existente.
-rem ------------------------------------------------------------
-if exist "cleanup-migrated-features.bat" (
-    call "cleanup-migrated-features.bat"
-    if errorlevel 1 (
-        echo.
-        echo ERROR: Fallo la limpieza de residuos migrados de Eruruu.
-        goto :failure
-    )
-)
-if exist "cleanup-removed-features.bat" (
-    call "cleanup-removed-features.bat"
-    if errorlevel 1 (
-        echo.
-        echo ERROR: Fallo la limpieza de funcionalidades retiradas de Eruruu.
-        goto :failure
-    )
-)
-echo.
-
-rem ------------------------------------------------------------
-rem 1. Buscar Java: PATH, JAVA_HOME y runtimes administrados por Prism.
-rem ------------------------------------------------------------
 where java.exe >nul 2>nul
 if not errorlevel 1 (
     for /f "delims=" %%J in ('where java.exe') do if not defined JAVA_EXE set "JAVA_EXE=%%J"
@@ -72,9 +46,6 @@ echo   %JAVA_EXE%
 if errorlevel 1 goto :java_broken
 echo.
 
-rem ------------------------------------------------------------
-rem 2. Descargar Gradle si aun no esta disponible localmente.
-rem ------------------------------------------------------------
 if not exist "%DIST_DIR%\bin\gradle.bat" (
     echo Gradle %GRADLE_VERSION% no esta descargado.
     if not exist "%DIST_ROOT%" mkdir "%DIST_ROOT%"
@@ -100,14 +71,11 @@ if not exist "%DIST_DIR%\bin\gradle.bat" (
 
 if not exist "%DIST_DIR%\bin\gradle.bat" goto :gradle_missing
 
-rem ------------------------------------------------------------
-rem 3. Compilar el mod con ModDevGradle.
-rem ------------------------------------------------------------
 echo.
 echo Compilando Eruruu Patch %MOD_VERSION%...
 echo La primera compilacion puede descargar dependencias de NeoForge.
 echo.
-set "BUILD_LOG=%CD%\build-dev.log"
+set "BUILD_LOG=%CD%\build.log"
 if exist "%BUILD_LOG%" del /q "%BUILD_LOG%"
 echo Guardando salida completa en:
 echo   %BUILD_LOG%
@@ -130,7 +98,6 @@ echo   %CD%\%JAR_FILE%
 echo ============================================================
 goto :success
 
-
 :java_missing
 echo.
 echo ERROR: No encontre Java para ejecutar Gradle.
@@ -142,7 +109,7 @@ echo   1. En Prism: Ajustes ^> Java ^> abrir o copiar la ruta de Java.
 echo   2. Instalar Java 21, por ejemplo Eclipse Temurin 21.
 echo   3. Abrir CMD aqui y ejecutar:
 echo        set "JAVA_HOME=C:\ruta\a\java-21"
-echo        build-dev.bat
+echo        build.bat
 goto :failure
 
 :java_broken

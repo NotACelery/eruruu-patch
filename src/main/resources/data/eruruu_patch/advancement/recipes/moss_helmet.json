@@ -6,9 +6,13 @@
     }
   },
   "requirements": [
-    ["automatic_unlock"]
+    [
+      "automatic_unlock"
+    ]
   ],
   "rewards": {
-    "recipes": ["eruruu_patch:moss_helmet"]
+    "recipes": [
+      "eruruu_patch:moss_helmet"
+    ]
   }
 }

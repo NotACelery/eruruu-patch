@@ -1,9 +1,22 @@
 {
   "variants": {
-    "facing=down": { "model": "eruruu_patch:block/filtered_hopper" },
-    "facing=east": { "model": "eruruu_patch:block/filtered_hopper_side", "y": 90 },
-    "facing=north": { "model": "eruruu_patch:block/filtered_hopper_side" },
-    "facing=south": { "model": "eruruu_patch:block/filtered_hopper_side", "y": 180 },
-    "facing=west": { "model": "eruruu_patch:block/filtered_hopper_side", "y": 270 }
+    "facing=down": {
+      "model": "eruruu_patch:block/filtered_hopper"
+    },
+    "facing=east": {
+      "model": "eruruu_patch:block/filtered_hopper_side",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "eruruu_patch:block/filtered_hopper_side"
+    },
+    "facing=south": {
+      "model": "eruruu_patch:block/filtered_hopper_side",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "eruruu_patch:block/filtered_hopper_side",
+      "y": 270
+    }
   }
 }

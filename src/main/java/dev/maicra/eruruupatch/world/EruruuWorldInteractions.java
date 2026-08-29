@@ -24,7 +24,8 @@ import java.util.List;
 
 @EventBusSubscriber(modid = "eruruu_patch")
 public final class EruruuWorldInteractions {
-    private static final ResourceLocation MOSS_HELMET = ResourceLocation.fromNamespaceAndPath("eruruu_patch", "moss_helmet");
+    private static final ResourceLocation MOSS_HELMET =
+            ResourceLocation.fromNamespaceAndPath("eruruu_patch", "moss_helmet");
     private static final float SWEET_BERRY_CHANCE = 0.03F;
     private static final List<PendingBerryScan> BERRY_SCANS = new ArrayList<>();
 

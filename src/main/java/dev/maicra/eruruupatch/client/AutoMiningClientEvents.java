@@ -22,8 +22,7 @@ public final class AutoMiningClientEvents {
         }
 
         Minecraft minecraft = Minecraft.getInstance();
-        // Clicks inside chat/inventory/JEI/backpacks/etc. are UI clicks, not the
-        // in-world toggle, and must never switch Auto Mining off.
+
         if (minecraft.screen != null) {
             return;
         }
@@ -34,8 +33,6 @@ public final class AutoMiningClientEvents {
             return;
         }
 
-        // Do not cancel the activation click: vanilla begins the first break and the
-        // controller takes over subsequent continueAttack calls.
         if (AutoMiningController.canActivate(minecraft)) {
             AutoMiningController.activate(minecraft);
         }

@@ -52,7 +52,7 @@ public final class FilteredHopperScreen extends AbstractContainerScreen<Filtered
         int x = leftPos;
         int y = topPos;
         graphics.blit(HOPPER_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
-        // Reuse the vanilla first-slot frame so the filter slot is visually native.
+
         graphics.blit(HOPPER_TEXTURE, x + 151, y + 19, 43, 19, 18, 18);
     }
 }

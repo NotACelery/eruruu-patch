@@ -56,12 +56,19 @@ public final class WorldInteractionJeiCategory implements IRecipeCategory<WorldI
     }
 
     @Override
-    public void draw(WorldInteractionInfo recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY) {
+    public void draw(
+            WorldInteractionInfo recipe,
+            IRecipeSlotsView recipeSlotsView,
+            GuiGraphics graphics,
+            double mouseX,
+            double mouseY) {
         var font = Minecraft.getInstance().font;
         graphics.drawString(font, "+", 35, 13, 0x404040, false);
         graphics.drawString(font, "→", 88, 13, 0x404040, false);
         if (recipe.chance() < 0.9999F) {
-            Component chance = Component.translatable("eruruu_patch.viewer.chance", RecipeViewerData.percent(recipe.chance()));
+            Component chance = Component.translatable(
+                    "eruruu_patch.viewer.chance",
+                    RecipeViewerData.percent(recipe.chance()));
             graphics.drawString(font, chance, 8, 34, 0x404040, false);
         }
         int y = 47;

@@ -10,7 +10,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.client.ClientHooks;
 
-/** Client-side controller for THE Pick's stationary AFK auto-mining mode. */
 public final class AutoMiningController {
     private static final double MOVEMENT_EPSILON_SQ = 1.0E-6D;
 
@@ -26,7 +25,10 @@ public final class AutoMiningController {
     }
 
     public static boolean canActivate(Minecraft minecraft) {
-        if (minecraft.player == null || minecraft.level == null || minecraft.gameMode == null || minecraft.screen != null) {
+        if (minecraft.player == null
+                || minecraft.level == null
+                || minecraft.gameMode == null
+                || minecraft.screen != null) {
             return false;
         }
         if (!ReinforcedPickaxeEvents.isReinforced(minecraft.player.getMainHandItem())) {
@@ -112,8 +114,6 @@ public final class AutoMiningController {
             }
         }
 
-        // Temporary air is expected in OneBlock/generators. Stop the current break
-        // animation but keep the controller active so the next generated block resumes.
         minecraft.gameMode.stopDestroyBlock();
     }
 

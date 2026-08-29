@@ -39,7 +39,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-/** Hopper geometry and redstone behavior with a dedicated filtered block entity. */
 public final class FilteredHopperBlock extends BaseEntityBlock {
     public static final MapCodec<FilteredHopperBlock> CODEC = simpleCodec(FilteredHopperBlock::new);
     public static final DirectionProperty FACING = BlockStateProperties.FACING_HOPPER;
@@ -56,10 +55,14 @@ public final class FilteredHopperBlock extends BaseEntityBlock {
     private static final VoxelShape SOUTH_SHAPE = Shapes.or(BASE, Block.box(6.0, 4.0, 12.0, 10.0, 8.0, 16.0));
     private static final VoxelShape WEST_SHAPE = Shapes.or(BASE, Block.box(0.0, 4.0, 6.0, 4.0, 8.0, 10.0));
     private static final VoxelShape DOWN_INTERACTION_SHAPE = INSIDE;
-    private static final VoxelShape EAST_INTERACTION_SHAPE = Shapes.or(INSIDE, Block.box(12.0, 8.0, 6.0, 16.0, 10.0, 10.0));
-    private static final VoxelShape NORTH_INTERACTION_SHAPE = Shapes.or(INSIDE, Block.box(6.0, 8.0, 0.0, 10.0, 10.0, 4.0));
-    private static final VoxelShape SOUTH_INTERACTION_SHAPE = Shapes.or(INSIDE, Block.box(6.0, 8.0, 12.0, 10.0, 10.0, 16.0));
-    private static final VoxelShape WEST_INTERACTION_SHAPE = Shapes.or(INSIDE, Block.box(0.0, 8.0, 6.0, 4.0, 10.0, 10.0));
+    private static final VoxelShape EAST_INTERACTION_SHAPE =
+            Shapes.or(INSIDE, Block.box(12.0, 8.0, 6.0, 16.0, 10.0, 10.0));
+    private static final VoxelShape NORTH_INTERACTION_SHAPE =
+            Shapes.or(INSIDE, Block.box(6.0, 8.0, 0.0, 10.0, 10.0, 4.0));
+    private static final VoxelShape SOUTH_INTERACTION_SHAPE =
+            Shapes.or(INSIDE, Block.box(6.0, 8.0, 12.0, 10.0, 10.0, 16.0));
+    private static final VoxelShape WEST_INTERACTION_SHAPE =
+            Shapes.or(INSIDE, Block.box(0.0, 8.0, 6.0, 4.0, 10.0, 10.0));
 
     public FilteredHopperBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -112,10 +115,14 @@ public final class FilteredHopperBlock extends BaseEntityBlock {
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
+            Level level, BlockState state, BlockEntityType<T> type) {
         return level.isClientSide
                 ? null
-                : createTickerHelper(type, ModBlockEntities.FILTERED_HOPPER.get(), FilteredHopperBlockEntity::pushItemsTick);
+                : createTickerHelper(
+                        type,
+                        ModBlockEntities.FILTERED_HOPPER.get(),
+                        FilteredHopperBlockEntity::pushItemsTick);
     }
 
     @Override
@@ -124,9 +131,11 @@ public final class FilteredHopperBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(
+            BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (level.isClientSide) return InteractionResult.SUCCESS;
-        if (level.getBlockEntity(pos) instanceof FilteredHopperBlockEntity hopper && player instanceof ServerPlayer serverPlayer) {
+        if (level.getBlockEntity(pos) instanceof FilteredHopperBlockEntity hopper
+                && player instanceof ServerPlayer serverPlayer) {
             serverPlayer.openMenu(
                     new SimpleMenuProvider(
                             (id, inventory, menuPlayer) -> new FilteredHopperMenu(id, inventory, hopper),
@@ -140,7 +149,13 @@ public final class FilteredHopperBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
+    protected void neighborChanged(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Block neighborBlock,
+            BlockPos neighborPos,
+            boolean movedByPiston) {
         checkPoweredState(level, pos, state);
     }
 

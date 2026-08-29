@@ -13,11 +13,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-/**
- * A compact culture used to seed plain netherrack with one of the two vanilla
- * Nether nylium variants. Once the first nylium block exists, vanilla bonemeal
- * mechanics can take over normally.
- */
 public final class NyliumCultureItem extends Item {
     private final Block targetNylium;
 

@@ -13,15 +13,6 @@ import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 
-/**
- * Small progression repairs exposed through vanilla villagers.
- *
- * <p>The Blank Spawn Egg trade deliberately replaces the vanilla Journeyman
- * Farmer cookie offer instead of becoming a third level-three listing. Vanilla
- * villagers only select two listings when they unlock a level; keeping three
- * entries would make the recovery tool random, defeating its anti-RNG-lock
- * purpose. The useful melon-for-emerald trade is preserved.</p>
- */
 public final class VillagerTradeEvents {
     private static final ResourceLocation FARMER_ID = ResourceLocation.withDefaultNamespace("farmer");
     private static final int JOURNEYMAN_LEVEL = 3;
@@ -50,20 +41,13 @@ public final class VillagerTradeEvents {
         ));
     }
 
-    /**
-     * Removes only the exact vanilla Journeyman Farmer cookie sale
-     * (3 emeralds -> 18 cookies). Other modded level-three Farmer trades are
-     * left untouched.
-     */
     private static void removeVanillaCookieTrade(List<VillagerTrades.ItemListing> trades) {
         Iterator<VillagerTrades.ItemListing> iterator = trades.iterator();
         while (iterator.hasNext()) {
             VillagerTrades.ItemListing listing = iterator.next();
             MerchantOffer offer;
             try {
-                // Vanilla's cookie listing does not depend on the trader entity.
-                // A deterministic throwaway RandomSource lets us inspect the
-                // generated offer without mutating any villager.
+
                 offer = listing.getOffer(null, RandomSource.create(0L));
             } catch (RuntimeException ignored) {
                 continue;
